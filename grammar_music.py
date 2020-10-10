@@ -9,11 +9,11 @@ rules = {
   ],
 
   "score": [
-    "[#repeat_set#][#set_tempo#]r #repeat# REPEAT\nt 0 #tempo#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#"
+    "[#repeat_set#][#set_tempo#]\nt 0 #tempo#\n{ #repeat# CNT\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n}"
   ],
 
   "repeat_set": [
-    "[repeat:1]","[repeat:2]","[repeat:3]","[repeat:4]",
+    "[repeat:1]","[repeat:2]","[repeat:3]","[repeat:4],[repeat:5]","[repeat:6]","[repeat:7]","[repeat:8]",
   ],
 
   "set_tempo": [
@@ -33,11 +33,11 @@ rules = {
   ],
 
   "note_1": [
-    "i #inst_set# \[0+[#set_offset#]#offset#\] #dur# \[[#set_on_off#]#amp#*#note_on_off#\] #freq# $REPEAT"
+    "i #inst_set# \[0+[#set_offset#]#offset#+$CNT*4\] 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#\] #freq#"
   ],
 
   "note": [
-    "i #inst_set# ^+1 #dur# \[[#set_on_off#]#amp#*#note_on_off#\] #freq# $REPEAT"
+    "i #inst_set# + 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#\] #freq#"
   ],
 
   "inst": [
@@ -45,7 +45,7 @@ rules = {
   ],
 
   "set_offset": [
-    "[offset:0]","[offset:0]","[offset:0]","[offset:0]"
+    "[offset:0]","[offset:0]","[offset:0.5]",
   ],
 
   "dur": [
@@ -89,8 +89,9 @@ ksmps = 10
 
 instr 1
 
-	kenv expseg 0.001, p3*0.1, p4, p3*0.8, p4, p3*0.1, 0.001
-	asig oscil 0.5, cpspch(p5)
+    p3 = p4
+	kenv expseg 0.001, p3*0.1, p5, p3*0.8, p5, p3*0.1, 0.001
+	asig oscil 0.5, cpspch(p6)
 	out asig
 
 endin
@@ -99,10 +100,10 @@ instr 2
 
     p3=4
 	if ftchnls(1) == 1 then
-		asigl loscil p4, 1, 1, 1, 0
+		asigl loscil p5, 1, 1, 1, 0
 		asigr = asigl
 	elseif ftchnls(1) == 2 then
-	    asigl, asigr loscil p4, 1, 1, 1, 0
+	    asigl, asigr loscil p5, 1, 1, 1, 0
 	endif
 	out asigl
 
@@ -112,10 +113,10 @@ instr 3
 
     p3=4
 	if ftchnls(2) == 1 then
-		asigl loscil p4, 1, 2, 1, 0
+		asigl loscil p5, 1, 2, 1, 0
 		asigr = asigl
 	elseif ftchnls(2) == 2 then
-	    asigl, asigr loscil p4, 1, 2, 1, 0
+	    asigl, asigr loscil p5, 1, 2, 1, 0
 	endif
 	out asigl
 
@@ -125,10 +126,10 @@ instr 4
 
     p3=4
 	if ftchnls(3) == 1 then
-		asigl loscil p4, 1, 3, 1, 0
+		asigl loscil p5, 1, 3, 1, 0
 		asigr = asigl
 	elseif ftchnls(3) == 2 then
-	    asigl, asigr loscil p4, 1, 3, 1, 0
+	    asigl, asigr loscil p5, 1, 3, 1, 0
 	endif
 	out asigl
 
@@ -138,10 +139,10 @@ instr 5
 
     p3=4
 	if ftchnls(4) == 1 then
-		asigl loscil p4, 1, 4, 1, 0
+		asigl loscil p5, 1, 4, 1, 0
 		asigr = asigl
 	elseif ftchnls(4) == 2 then
-	    asigl, asigr loscil p4, 1, 4, 1, 0
+	    asigl, asigr loscil p5, 1, 4, 1, 0
 	endif
 	out asigl
 
@@ -151,10 +152,10 @@ instr 6
 
     p3=4
 	if ftchnls(5) == 1 then
-		asigl loscil p4, 1, 5, 1, 0
+		asigl loscil p5, 1, 5, 1, 0
 		asigr = asigl
 	elseif ftchnls(5) == 2 then
-	    asigl, asigr loscil p4, 1, 5, 1, 0
+	    asigl, asigr loscil p5, 1, 5, 1, 0
 	endif
 	out asigl
 
@@ -164,10 +165,10 @@ instr 7
 
     p3=4
 	if ftchnls(6) == 1 then
-		asigl loscil p4, 1, 6, 1, 0
+		asigl loscil p5, 1, 6, 1, 0
 		asigr = asigl
 	elseif ftchnls(6) == 2 then
-	    asigl, asigr loscil p4, 1, 6, 1, 0
+	    asigl, asigr loscil p5, 1, 6, 1, 0
 	endif
 	out asigl
 
@@ -177,10 +178,10 @@ instr 8
 
     p3=4
 	if ftchnls(7) == 1 then
-		asigl loscil p4, 1, 7, 1, 0
+		asigl loscil p5, 1, 7, 1, 0
 		asigr = asigl
 	elseif ftchnls(7) == 2 then
-	    asigl, asigr loscil p4, 1, 7, 1, 0
+	    asigl, asigr loscil p5, 1, 7, 1, 0
 	endif
 	out asigl
 
@@ -190,10 +191,10 @@ instr 9
 
     p3=4
 	if ftchnls(8) == 1 then
-		asigl loscil p4, 1, 8, 1, 0
+		asigl loscil p5, 1, 8, 1, 0
 		asigr = asigl
 	elseif ftchnls(8) == 2 then
-	    asigl, asigr loscil p4, 1, 8, 1, 0
+	    asigl, asigr loscil p5, 1, 8, 1, 0
 	endif
 	out asigl
 
@@ -203,10 +204,10 @@ instr 10
 
     p3=4
 	if ftchnls(9) == 1 then
-		asigl loscil p4, 1, 9, 1, 0
+		asigl loscil p5, 1, 9, 1, 0
 		asigr = asigl
 	elseif ftchnls(9) == 2 then
-	    asigl, asigr loscil p4, 1, 9, 1, 0
+	    asigl, asigr loscil p5, 1, 9, 1, 0
 	endif
 	out asigl
 
@@ -236,7 +237,6 @@ csd = csd + output + '''
 </CsoundSynthesizer>
 '''
 
-print(csd)
 ret = cs.compileCsdText(csd)
 if ret == ctcsound.CSOUND_SUCCESS:
     cs.start()
