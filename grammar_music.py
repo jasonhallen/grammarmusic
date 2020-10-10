@@ -1,5 +1,6 @@
 import tracery
 from tracery.modifiers import base_english
+import ctcsound
 
 rules = {
 
@@ -12,7 +13,7 @@ rules = {
   ],
 
   "repeat_set": [
-    "[repeat:0]","[repeat:1]","[repeat:2]","[repeat:3]","[repeat:4]",
+    "[repeat:1]","[repeat:2]","[repeat:3]","[repeat:4]",
   ],
 
   "set_tempo": [
@@ -20,7 +21,7 @@ rules = {
   ],
 
   "tempo": [
-    "80","90","100","110","120","130","140","150","160","170","180","190","200","210","220","230","240","250","260","270","280","290","300"
+    "200","210","220","230","240","250","260","270","280","290","300","310","320","330","340","350","360","370","380","390","400"
   ],
 
   "set_inst": [
@@ -44,7 +45,7 @@ rules = {
   ],
 
   "set_offset": [
-    "[offset:0]","[offset:0.25]","[offset:0.5]","[offset:0.75]"
+    "[offset:0]","[offset:0]","[offset:0]","[offset:0]"
   ],
 
   "dur": [
@@ -69,4 +70,175 @@ rules = {
 grammar = tracery.Grammar(rules)
 grammar.add_modifiers(base_english)
 for i in range(1):
-    print(grammar.flatten("#origin#"))  # prints, e.g., "Hello, world!"
+    output = grammar.flatten("#origin#")
+    print(output)
+    print()
+
+cs = ctcsound.Csound()
+
+csd = '''
+<CsoundSynthesizer>
+<CsOptions>
+-odac
+</CsOptions>
+<CsInstruments>
+
+sr = 44100
+ksmps = 10
+0dbfs = 1
+
+instr 1
+
+	kenv expseg 0.001, p3*0.1, p4, p3*0.8, p4, p3*0.1, 0.001
+	asig oscil 0.5, cpspch(p5)
+	out asig
+
+endin
+
+instr 2
+
+    p3=4
+	if ftchnls(1) == 1 then
+		asigl loscil p4, 1, 1, 1, 0
+		asigr = asigl
+	elseif ftchnls(1) == 2 then
+	    asigl, asigr loscil p4, 1, 1, 1, 0
+	endif
+	out asigl
+
+endin
+
+instr 3
+
+    p3=4
+	if ftchnls(2) == 1 then
+		asigl loscil p4, 1, 2, 1, 0
+		asigr = asigl
+	elseif ftchnls(2) == 2 then
+	    asigl, asigr loscil p4, 1, 2, 1, 0
+	endif
+	out asigl
+
+endin
+
+instr 4
+
+    p3=4
+	if ftchnls(3) == 1 then
+		asigl loscil p4, 1, 3, 1, 0
+		asigr = asigl
+	elseif ftchnls(3) == 2 then
+	    asigl, asigr loscil p4, 1, 3, 1, 0
+	endif
+	out asigl
+
+endin
+
+instr 5
+
+    p3=4
+	if ftchnls(4) == 1 then
+		asigl loscil p4, 1, 4, 1, 0
+		asigr = asigl
+	elseif ftchnls(4) == 2 then
+	    asigl, asigr loscil p4, 1, 4, 1, 0
+	endif
+	out asigl
+
+endin
+
+instr 6
+
+    p3=4
+	if ftchnls(5) == 1 then
+		asigl loscil p4, 1, 5, 1, 0
+		asigr = asigl
+	elseif ftchnls(5) == 2 then
+	    asigl, asigr loscil p4, 1, 5, 1, 0
+	endif
+	out asigl
+
+endin
+
+instr 7
+
+    p3=4
+	if ftchnls(6) == 1 then
+		asigl loscil p4, 1, 6, 1, 0
+		asigr = asigl
+	elseif ftchnls(6) == 2 then
+	    asigl, asigr loscil p4, 1, 6, 1, 0
+	endif
+	out asigl
+
+endin
+
+instr 8
+
+    p3=4
+	if ftchnls(7) == 1 then
+		asigl loscil p4, 1, 7, 1, 0
+		asigr = asigl
+	elseif ftchnls(7) == 2 then
+	    asigl, asigr loscil p4, 1, 7, 1, 0
+	endif
+	out asigl
+
+endin
+
+instr 9
+
+    p3=4
+	if ftchnls(8) == 1 then
+		asigl loscil p4, 1, 8, 1, 0
+		asigr = asigl
+	elseif ftchnls(8) == 2 then
+	    asigl, asigr loscil p4, 1, 8, 1, 0
+	endif
+	out asigl
+
+endin
+
+instr 10
+
+    p3=4
+	if ftchnls(9) == 1 then
+		asigl loscil p4, 1, 9, 1, 0
+		asigr = asigl
+	elseif ftchnls(9) == 2 then
+	    asigl, asigr loscil p4, 1, 9, 1, 0
+	endif
+	out asigl
+
+endin
+
+</CsInstruments>
+<CsScore>
+
+f 1 0 0 1 "drums/LinnDrumKick.wav" 0 0 0
+f 2 0 0 1 "drums/BD2510.WAV" 0 0 0
+f 3 0 0 1 "drums/SD0010.WAV" 0 0 0
+f 4 0 0 1 "drums/CP.WAV" 0 0 0
+f 5 0 0 1 "drums/OH00.WAV" 0 0 0
+f 6 0 0 1 "drums/MT00.WAV" 0 0 0
+f 7 0 0 1 "drums/CY0050.WAV" 0 0 0
+f 8 0 0 1 "drums/RS.WAV" 0 0 0
+f 9 0 0 1 "drums/LT50.WAV" 0 0 0
+f 10 0 0 1 "drums/CL.WAV" 0 0 0
+f 11 0 0 1 "drums/MA.WAV" 0 0 0
+f 12 0 0 1 "drums/CH.WAV" 0 0 0
+
+
+'''
+csd = csd + output + '''
+
+</CsScore>
+</CsoundSynthesizer>
+'''
+
+print(csd)
+ret = cs.compileCsdText(csd)
+if ret == ctcsound.CSOUND_SUCCESS:
+    cs.start()
+    cs.perform()
+    cs.reset()
