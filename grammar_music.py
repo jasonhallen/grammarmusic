@@ -9,11 +9,11 @@ rules = {
   ],
 
   "score": [
-    "[#repeat_set#][#set_tempo#]\nt 0 #tempo#\n{ #repeat# CNT\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n}"
+    "[#repeat_set#][#set_tempo#]\nt 0 #tempo#\n{ #repeat# CNT\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n}\nb \[16*#repeat#\]\n{ [#repeat_set#]#repeat# CNT\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n}"
   ],
 
   "repeat_set": [
-    "[repeat:1]","[repeat:2]","[repeat:3]","[repeat:4],[repeat:5]","[repeat:6]","[repeat:7]","[repeat:8]",
+    "[repeat:1]","[repeat:2]","[repeat:3]","[repeat:4]"
   ],
 
   "set_tempo": [
