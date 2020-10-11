@@ -1,6 +1,18 @@
 import tracery
 from tracery.modifiers import base_english
 import ctcsound
+from random import choice
+from datetime import datetime
+
+# TASKS
+# Key selection for each section
+# Rules for melody selection that emphasize smaller steps and the fundamental
+# Different number of measures per section
+# 3/4 time
+# Save sections and come back to them
+# Let sections mutate
+# Suggest some starting rhythmic templates
+# Export the CSD file with random title each time it's run
 
 rules = {
 
@@ -9,7 +21,7 @@ rules = {
   ],
 
   "score": [
-    "[#repeat_set#][#set_tempo#]\nt 0 #tempo#\n{ #repeat# CNT\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n}\nb \[16*#repeat#\]\n{ [#repeat_set#]#repeat# CNT\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n}"
+    "[#repeat_set#]\nt 0 #[tempo:#set_tempo#]tempo#\n{ #repeat# CNT\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n}\nb \[16*#repeat#\]\n{ [#repeat_set#]#repeat# CNT\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n}"
   ],
 
   "repeat_set": [
@@ -17,10 +29,6 @@ rules = {
   ],
 
   "set_tempo": [
-    "[tempo_set:#tempo#]"
-  ],
-
-  "tempo": [
     "200","210","220","230","240","250","260","270","280","290","300","310","320","330","340","350","360","370","380","390","400"
   ],
 
@@ -45,7 +53,7 @@ rules = {
   ],
 
   "set_offset": [
-    "[offset:0]","[offset:0]","[offset:0.5]",
+    "[offset:0]","[offset:0.5]",
   ],
 
   "dur": [
@@ -242,3 +250,14 @@ if ret == ctcsound.CSOUND_SUCCESS:
     cs.start()
     cs.perform()
     cs.reset()
+
+title_chars=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9"]
+title = ""
+for i in range(7):
+    title += choice(title_chars)
+date = datetime.today().strftime('%Y_%m_%d')
+filename = "output/"+date+"_"+title+".csd"
+
+with open(filename, "w") as f:
+    f.write(csd)
+f.close()
