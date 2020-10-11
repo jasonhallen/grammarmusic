@@ -33,11 +33,11 @@ rules = {
   ],
 
   "note_1": [
-    "i #inst_set# \[0+[#set_offset#]#offset#+$CNT*4\] 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#\] #freq#"
+    "i #inst_set# \[0+[#set_offset#]#offset#+$CNT*16\] 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#/4\] #freq#"
   ],
 
   "note": [
-    "i #inst_set# + 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#\] #freq#"
+    "i #inst_set# + 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#/4\] #freq#"
   ],
 
   "inst": [
@@ -91,7 +91,7 @@ instr 1
 
     p3 = p4
 	kenv expseg 0.001, p3*0.1, p5, p3*0.8, p5, p3*0.1, 0.001
-	asig oscil 0.5, cpspch(p6)
+	asig oscil kenv, cpspch(p6)
 	out asig
 
 endin
