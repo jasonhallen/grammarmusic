@@ -5,14 +5,16 @@ from random import choice
 from datetime import datetime
 
 # TASKS
-# Key selection for each section
+# Key signature selection for each section
 # Rules for melody selection that emphasize smaller steps and the fundamental
-# Different number of measures per section
+# Different number of measures per section (e.g. 4, 8, 16)
+# Different number
 # 3/4 time
-# Save sections and come back to them
-# Let sections mutate
+# Save sections and return to them
+# Let sections mutate with new note values
 # Suggest some starting rhythmic templates
-# Export the CSD file with random title each time it's run
+# Create more interesting instruments
+# Adjust instrument levels to mix better
 
 rules = {
 
@@ -21,11 +23,11 @@ rules = {
   ],
 
   "score": [
-    "[#repeat_set#]\nt 0 #[tempo:#set_tempo#]tempo#\n{ #repeat# CNT\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n}\nb \[16*#repeat#\]\n{ [#repeat_set#]#repeat# CNT\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n}"
+    "t 0 #[tempo:#set_tempo#]tempo#\n{ [repeat:#set_repeat#]#repeat# CNT \n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n}\nb \[16*#repeat#\]\n{ [#repeat_set#]#repeat# CNT\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n}"
   ],
 
-  "repeat_set": [
-    "[repeat:1]","[repeat:2]","[repeat:3]","[repeat:4]"
+  "set_repeat": [
+    "1","2","3","4"
   ],
 
   "set_tempo": [
@@ -251,7 +253,7 @@ if ret == ctcsound.CSOUND_SUCCESS:
     cs.perform()
     cs.reset()
 
-title_chars=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9"]
+title_chars=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","1","2","3","4","5","6","7","8","9"]
 title = ""
 for i in range(7):
     title += choice(title_chars)
