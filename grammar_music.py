@@ -5,7 +5,6 @@ from random import choice
 from datetime import datetime
 
 # TASKS
-# Key signature selection for each section
 # Rules for melody selection that emphasize smaller steps and the fundamental
 # Different number of measures per section (e.g. 4, 8, 12)
 # 3/4 time
@@ -63,7 +62,7 @@ rules = {
   ],
 
   "set_mode": [
-    "[mode:aeolian][note_options:.00,.02,.03,.05,.07,.08,.10,.12]","[mode:dorian][note_options:.00,.02,.03,.05,.07,.09,.10,.12]","[mode:ionian][note_options:.00,.02,.04,.05,.07,.09,.11,.12]"
+    "[mode:atonal][note_options:.00,.01,.02,.03,.04,.05,.06,.07,.08,.09,.10,.11,.12]","[mode:aeolian][note_options:.00,.00,.00,.02,.03,.05,.07,.08,.10,.12]","[mode:dorian][note_options:.00,.00,.00,.02,.03,.05,.07,.09,.10,.12]","[mode:ionian][note_options:.00,.00,.00,.02,.04,.05,.07,.09,.11,.12]","[mode:phrygian][note_options:.00,.00,.00,.01,.03,.05,.07,.08,.10,.12]","[mode:lydian][note_options:.00,.00,.00,.02,.04,.06,.07,.09,.11,.12]","[mode:mixolydian][note_options:.00,.00,.00,.02,.04,.05,.07,.09,.10,.12]","[mode:locrian][note_options:.00,.00,.00,.01,.03,.05,.06,.08,.10,.12]"
   ],
 
   "set_inst": [
@@ -83,7 +82,7 @@ rules = {
   ],
 
   "inst": [
-    "1","1","1","2","3","4","5","6","7","8","9","10"
+    "1","1","1","2","3","4","5","6","7","8","9","10","11","12"
   ],
 
   "set_offset": [
@@ -91,7 +90,7 @@ rules = {
   ],
 
   "dur": [
-    "0.25","0.5","0.75","1","1.25","1.5","2.75","3"
+    "0.25","0.5","0.25","0.5","0.25","0.5","0.75","1","1.25","1.5","2.75","3"
   ],
 
   "set_on_off": [
@@ -102,8 +101,8 @@ rules = {
     "0.05","0.1","0.15","0.2","0.25","0.3","0.35","0.4","0.45","0.5","0.55","0.6","0.65","0.7","0.75","0.8","0.85","0.9","0.95"
   ],
 
-  "freq": [
-    "8.00","8.01","8.02","8.03","8.04","8.05","8.06","8.07","8.08","8.09","8.10","8.11","8.12"
+  "note_offset": [
+    "+.12","+.11","+.10","+.9","+.08","+.07","+.06","+.05","+.04","+.03","+.02","+.01","+0"
   ]
 
 }
@@ -223,6 +222,36 @@ instr 10
 	endif
 	out asigl
 endin
+instr 11
+    p3=4
+	if ftchnls(10) == 1 then
+		asigl loscil p5, 1, 10, 1, 0
+		asigr = asigl
+	elseif ftchnls(10) == 2 then
+	    asigl, asigr loscil p5, 1, 10, 1, 0
+	endif
+	out asigl
+endin
+instr 12
+    p3=4
+	if ftchnls(11) == 1 then
+		asigl loscil p5, 1, 11, 1, 0
+		asigr = asigl
+	elseif ftchnls(11) == 2 then
+	    asigl, asigr loscil p5, 1, 11, 1, 0
+	endif
+	out asigl
+endin
+instr 13
+    p3=4
+	if ftchnls(12) == 1 then
+		asigl loscil p5, 1, 12, 1, 0
+		asigr = asigl
+	elseif ftchnls(12) == 2 then
+	    asigl, asigr loscil p5, 1, 12, 1, 0
+	endif
+	out asigl
+endin
 </CsInstruments>
 <CsScore>
 f 1 0 0 1 "drums/LinnDrumKick.wav" 0 0 0
@@ -237,6 +266,7 @@ f 9 0 0 1 "drums/LT50.WAV" 0 0 0
 f 10 0 0 1 "drums/CL.WAV" 0 0 0
 f 11 0 0 1 "drums/MA.WAV" 0 0 0
 f 12 0 0 1 "drums/CH.WAV" 0 0 0
+
 '''
 csd = csd + output + '''
 </CsScore>
