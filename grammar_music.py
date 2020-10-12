@@ -24,11 +24,7 @@ rules = {
   ],
 
   "score": [
-    "t 0 [tempo:#set_tempo#]#tempo#\n{ [repeat:#set_repeat#]#repeat# CNT \n[#set_voices#]; voices=#voices#\n[#set_voices#]#voices_template#\n}\nb \[16*#repeat#\]\n{ [repeat:#set_repeat#]#repeat# CNT\n[#set_voices#]; voices=#voices#\n#voices_template#\n}"
-  ],
-
-  "voices_template": [
-    "[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#"
+    "t 0 [tempo:#set_tempo#]#tempo#\n{ [repeat:#set_repeat#]#repeat# CNT \n[#set_voices#]#voices_template#\n}\nb \[16*#repeat#\]\n{ [repeat:#set_repeat#]#repeat# CNT\n[#set_voices#]#voices_template#\n}"
   ],
 
   "set_repeat": [
