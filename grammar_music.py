@@ -22,7 +22,7 @@ rules = {
   ],
 
   "score": [
-    "t 0 [tempo:#set_tempo#]#tempo#\n{ [repeat:#set_repeat#]#repeat# CNT \n[#set_voices#]#voices_template#\n}\nb \[12*#repeat#\]\n{ [repeat:#set_repeat#]#repeat# CNT\n[#set_voices#]#voices_template#\n}"
+    "t 0 [tempo:#set_tempo#]#tempo#\n{ [repeat:#set_repeat#]#repeat# CNT \n[#set_voices#]#voices_template#\n}\nb [store1:#measures#*4*#repeat#] $BO#store1#$BC\n{ [repeat:#set_repeat#]#repeat# CNT\n[#set_voices#]#voices_template#\n}\nb $BO#measures#*4*#repeat#+#store1#$BC\n{ [repeat:#set_repeat#]#repeat# CNT\n[#set_voices#]#voices_template#\n}"
   ],
 
   "set_repeat": [
@@ -38,27 +38,27 @@ rules = {
   ],
 
   "2_voices": [
-    "[#set_mode#][#set_inst#]#measure#\n[#set_inst#]#measure#\n"
+    "[measures:2][#set_mode#][#set_inst#]#measure_1# #measure#\n[#set_inst#]#measure_1# #measure#\n","[measures:3][#set_mode#][#set_inst#]#measure_1# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure#\n","[measures:4][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure#\n","[measures:5][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n","[measures:6][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n","[measures:7][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n","[measures:8][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n"
   ],
 
   "3_voices": [
-    "[#set_mode#][#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
+    "[measures:2][#set_mode#][#set_inst#]#measure_1# #measure#\n[#set_inst#]#measure_1# #measure#\n[#set_inst#]#measure_1# #measure#\n","[measures:3][#set_mode#][#set_inst#]#measure_1# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure#\n","[measures:4][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure#\n","[measures:5][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n","[measures:6][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n","[measures:7][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n","[measures:8][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n"
   ],
 
   "4_voices": [
-    "[#set_mode#][#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
+    "[measures:2][#set_mode#][#set_inst#]#measure_1# #measure#\n[#set_inst#]#measure_1# #measure#\n[#set_inst#]#measure_1# #measure#\n[#set_inst#]#measure_1# #measure#\n","[measures:3][#set_mode#][#set_inst#]#measure_1# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure#\n","[measures:4][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure#\n","[measures:5][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n","[measures:6][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n","[measures:7][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n","[measures:8][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n",
   ],
 
   "5_voices": [
-    "[#set_mode#][#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
+    "[measures:2][#set_mode#][#set_inst#]#measure_1# #measure#\n[#set_inst#]#measure_1# #measure#\n[#set_inst#]#measure_1# #measure#\n[#set_inst#]#measure_1# #measure#\n[#set_inst#]#measure_1# #measure#\n","[measures:3][#set_mode#][#set_inst#]#measure_1# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure#\n","[measures:4][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure#\n","[measures:5][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n","[measures:6][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n","[measures:7][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n","[measures:8][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n",
   ],
 
   "6_voices": [
-    "[#set_mode#][#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
+    "[measures:2][#set_mode#][#set_inst#]#measure_1# #measure#\n[#set_inst#]#measure_1# #measure#\n[#set_inst#]#measure_1# #measure#\n[#set_inst#]#measure_1# #measure#\n[#set_inst#]#measure_1# #measure#\n[#set_inst#]#measure_1# #measure#\n","[measures:3][#set_mode#][#set_inst#]#measure_1# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure#\n","[measures:4][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure#\n","[measures:5][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure#\n","[measures:6][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure#\n","[measures:7][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure#\n","[measures:8][#set_mode#][#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n[#set_inst#]#measure_1# #measure# #measure# #measure# #measure# #measure# #measure# #measure#\n",
   ],
 
   "set_measures": [
-    "[measures:2][measures_template:#note_1#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#]"
+    "[measures:3][measures_template:#note_1#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#]"
   ],
 
   "set_mode": [
@@ -69,16 +69,20 @@ rules = {
     "[inst_set:#inst#]"
   ],
 
+  "measure_1": [
+    "#note_1#\n#note#\n#note#\n#note#\n"
+  ],
+
   "measure": [
-    "#note_1#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#"
+    "#note#\n#note#\n#note#\n#note#\n"
   ],
 
   "note_1": [
-    "i #inst_set# \[0+[#set_offset#]#offset#+$CNT*12\] 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#/#voices#\] \[8+#note_options#\] ;#mode#"
+    "i #inst_set# $BO0+[#set_offset#]#offset#+$CNT*#measures#*4$BC 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO8+#note_options#$BC ;#mode#"
   ],
 
   "note": [
-    "i #inst_set# + 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#/#voices#\] \[8+#note_options#\] ;#mode#"
+    "i #inst_set# + 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO8+#note_options#$BC ;#mode#"
   ],
 
   "inst": [
@@ -112,6 +116,8 @@ grammar = tracery.Grammar(rules)
 grammar.add_modifiers(base_english)
 for i in range(1):
     output = grammar.flatten("#origin#")
+    output = output.replace("$BO","[")
+    output = output.replace("$BC","]")
     print(output)
     print()
 
@@ -269,6 +275,8 @@ f 12 0 0 1 "drums/CH.WAV" 0 0 0
 
 '''
 csd = csd + output + '''
+
+
 </CsScore>
 </CsoundSynthesizer>
 '''
