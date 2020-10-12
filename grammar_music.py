@@ -39,27 +39,31 @@ rules = {
   ],
 
   "2_voices": [
-    "[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
+    "[#set_mode#][#set_inst#]#measure#\n[#set_inst#]#measure#\n"
   ],
 
   "3_voices": [
-    "[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
+    "[#set_mode#][#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
   ],
 
   "4_voices": [
-    "[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
+    "[#set_mode#][#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
   ],
 
   "5_voices": [
-    "[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
+    "[#set_mode#][#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
   ],
 
   "6_voices": [
-    "[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
+    "[#set_mode#][#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
   ],
 
   "set_measures": [
     "[measures:2][measures_template:#note_1#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#]"
+  ],
+
+  "set_mode": [
+    "[mode:aeolian][note_options:.00,.02,.03,.05,.07,.08,.10,.12]","[mode:dorian][note_options:.00,.02,.03,.05,.07,.09,.10,.12]","[mode:ionian][note_options:.00,.02,.04,.05,.07,.09,.11,.12]"
   ],
 
   "set_inst": [
@@ -71,15 +75,15 @@ rules = {
   ],
 
   "note_1": [
-    "i #inst_set# \[0+[#set_offset#]#offset#+$CNT*12\] 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#/#voices#\] #freq#"
+    "i #inst_set# \[0+[#set_offset#]#offset#+$CNT*12\] 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#/#voices#\] \[8+#note_options#\] ;#mode#"
   ],
 
   "note": [
-    "i #inst_set# + 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#/#voices#\] #freq#"
+    "i #inst_set# + 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#/#voices#\] \[8+#note_options#\] ;#mode#"
   ],
 
   "inst": [
-    "1","2","3","4","5","6","7","8","9","10"
+    "1","1","1","2","3","4","5","6","7","8","9","10"
   ],
 
   "set_offset": [
@@ -99,7 +103,7 @@ rules = {
   ],
 
   "freq": [
-    "8.01","8.02","8.03","8.04","8.05","8.06","8.07","8.08","8.09","8.10","8.11"
+    "8.00","8.01","8.02","8.03","8.04","8.05","8.06","8.07","8.08","8.09","8.10","8.11","8.12"
   ]
 
 }
