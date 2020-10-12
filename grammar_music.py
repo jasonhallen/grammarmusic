@@ -1,4 +1,3 @@
-
 import tracery
 from tracery.modifiers import base_english
 import ctcsound
@@ -8,7 +7,7 @@ from datetime import datetime
 # TASKS
 # Key signature selection for each section
 # Rules for melody selection that emphasize smaller steps and the fundamental
-# Different number of measures per section (e.g. 4, 8, 16)
+# Different number of measures per section (e.g. 4, 8, 12)
 # 3/4 time
 # Save sections and return to them
 # Let sections mutate with new note values
@@ -24,7 +23,7 @@ rules = {
   ],
 
   "score": [
-    "t 0 [tempo:#set_tempo#]#tempo#\n{ [repeat:#set_repeat#]#repeat# CNT \n[#set_voices#]#voices_template#\n}\nb \[16*#repeat#\]\n{ [repeat:#set_repeat#]#repeat# CNT\n[#set_voices#]#voices_template#\n}"
+    "t 0 [tempo:#set_tempo#]#tempo#\n{ [repeat:#set_repeat#]#repeat# CNT \n[#set_voices#]#voices_template#\n}\nb \[12*#repeat#\]\n{ [repeat:#set_repeat#]#repeat# CNT\n[#set_voices#]#voices_template#\n}"
   ],
 
   "set_repeat": [
@@ -59,16 +58,20 @@ rules = {
     "[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
   ],
 
+  "set_measures": [
+    "[measures:2][measures_template:#note_1#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#]"
+  ],
+
   "set_inst": [
     "[inst_set:#inst#]"
   ],
 
   "measure": [
-    "#note_1#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#"
+    "#note_1#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#\n#note#"
   ],
 
   "note_1": [
-    "i #inst_set# \[0+[#set_offset#]#offset#+$CNT*16\] 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#/#voices#\] #freq#"
+    "i #inst_set# \[0+[#set_offset#]#offset#+$CNT*12\] 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#/#voices#\] #freq#"
   ],
 
   "note": [
@@ -80,7 +83,7 @@ rules = {
   ],
 
   "set_offset": [
-    "[offset:0]","[offset:0.5]",
+    "[offset:0]","[offset:0]","[offset:0]","[offset:0.25]","[offset:0.5]","[offset:0.75]"
   ],
 
   "dur": [
