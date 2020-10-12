@@ -6,7 +6,8 @@ from datetime import datetime
 
 # TASKS
 # Rules for melody selection that emphasize smaller steps and the fundamental
-# Different number of measures per section (e.g. 4, 8, 12)
+# Allow individual notes to be offset by 0,0.25,0.5,0.75 instead of the whole line
+# Free floating instruments, looping, evolving, superimposed on each other, shifting sounds
 # 3/4 time
 # Save sections and return to them
 # Let sections mutate with new note values
@@ -66,7 +67,11 @@ rules = {
   ],
 
   "set_inst": [
-    "[inst_set:#inst#]"
+    "[inst_set:#inst#][register:#register#]"
+  ],
+
+  "register": [
+    "7","8","9","10"
   ],
 
   "measure_1": [
@@ -78,11 +83,11 @@ rules = {
   ],
 
   "note_1": [
-    "i #inst_set# $BO0+[#set_offset#]#offset#+$CNT*#measures#*4$BC 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO8+#note_options#$BC ;#mode#"
+    "i #inst_set# $BO0+[#set_offset#]#offset#+$CNT*#measures#*4$BC 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#register#+#note_options#$BC ;#mode#"
   ],
 
   "note": [
-    "i #inst_set# + 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO8+#note_options#$BC ;#mode#"
+    "i #inst_set# + 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#register#+#note_options#$BC ;#mode#"
   ],
 
   "inst": [
@@ -133,10 +138,17 @@ sr = 44100
 ksmps = 10
 0dbfs = 1
 instr 1
-    p3 = p4
-	kenv expseg 0.001, p3*0.1, p5, p3*0.8, p5, p3*0.1, 0.001
-	asig oscil kenv, cpspch(p6)
-	out asig
+    p3=p4
+    seed 0
+    irefl	random 0.001, 0.999
+    aEnv	linsegr	0, 0.005, 1, p3-0.105, 1, 0.1, 0		; amplitude envelope
+    iPlk	random	0.1, 0.3					; point at which to pluck the string
+    iDtn	random    -0.05, 0.05					; random detune
+    ;irefl	table	inum, giScal1					; read reflection value from giScal table according to note number
+    aSig	wgpluck2  0.58, p5, cpspch(p6), iPlk, irefl	; generate Karplus-Strong plucked string audio
+    kcf	expon	cpsoct(rnd(6)+6),p3,50				; filter cutoff frequency envelope
+    aSig	clfilt	aSig, kcf, 0, 2					; butterworth lowpass filter
+    out aSig*aEnv*1.5
 endin
 instr 2
     p3=4
