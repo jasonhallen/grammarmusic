@@ -1,3 +1,4 @@
+
 import tracery
 from tracery.modifiers import base_english
 import ctcsound
@@ -8,13 +9,13 @@ from datetime import datetime
 # Key signature selection for each section
 # Rules for melody selection that emphasize smaller steps and the fundamental
 # Different number of measures per section (e.g. 4, 8, 16)
-# Different number
 # 3/4 time
 # Save sections and return to them
 # Let sections mutate with new note values
 # Suggest some starting rhythmic templates
 # Create more interesting instruments
 # Adjust instrument levels to mix better
+# Add effects channels randomly selected (e.g. reverb, delay, filter)
 
 rules = {
 
@@ -23,7 +24,11 @@ rules = {
   ],
 
   "score": [
-    "t 0 #[tempo:#set_tempo#]tempo#\n{ [repeat:#set_repeat#]#repeat# CNT \n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n}\nb \[16*#repeat#\]\n{ [#repeat_set#]#repeat# CNT\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n}"
+    "t 0 [tempo:#set_tempo#]#tempo#\n{ [repeat:#set_repeat#]#repeat# CNT \n[#set_voices#]; voices=#voices#\n[#set_voices#]#voices_template#\n}\nb \[16*#repeat#\]\n{ [repeat:#set_repeat#]#repeat# CNT\n[#set_voices#]; voices=#voices#\n#voices_template#\n}"
+  ],
+
+  "voices_template": [
+    "[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#"
   ],
 
   "set_repeat": [
@@ -32,6 +37,30 @@ rules = {
 
   "set_tempo": [
     "200","210","220","230","240","250","260","270","280","290","300","310","320","330","340","350","360","370","380","390","400"
+  ],
+
+  "set_voices": [
+    "[voices:2][voices_template:#2_voices#]","[voices:3][voices_template:#3_voices#]","[voices:4][voices_template:#4_voices#]","[voices:5][voices_template:#5_voices#]","[voices:6][voices_template:#6_voices#]"
+  ],
+
+  "2_voices": [
+    "[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
+  ],
+
+  "3_voices": [
+    "[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
+  ],
+
+  "4_voices": [
+    "[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
+  ],
+
+  "5_voices": [
+    "[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
+  ],
+
+  "6_voices": [
+    "[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n[#set_inst#]#measure#\n"
   ],
 
   "set_inst": [
@@ -43,11 +72,11 @@ rules = {
   ],
 
   "note_1": [
-    "i #inst_set# \[0+[#set_offset#]#offset#+$CNT*16\] 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#/4\] #freq#"
+    "i #inst_set# \[0+[#set_offset#]#offset#+$CNT*16\] 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#/#voices#\] #freq#"
   ],
 
   "note": [
-    "i #inst_set# + 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#/4\] #freq#"
+    "i #inst_set# + 1 #dur# \[[#set_on_off#]#amp#*#note_on_off#/#voices#\] #freq#"
   ],
 
   "inst": [
@@ -92,22 +121,16 @@ csd = '''
 -odac
 </CsOptions>
 <CsInstruments>
-
 sr = 44100
 ksmps = 10
 0dbfs = 1
-
 instr 1
-
     p3 = p4
 	kenv expseg 0.001, p3*0.1, p5, p3*0.8, p5, p3*0.1, 0.001
 	asig oscil kenv, cpspch(p6)
 	out asig
-
 endin
-
 instr 2
-
     p3=4
 	if ftchnls(1) == 1 then
 		asigl loscil p5, 1, 1, 1, 0
@@ -116,11 +139,8 @@ instr 2
 	    asigl, asigr loscil p5, 1, 1, 1, 0
 	endif
 	out asigl
-
 endin
-
 instr 3
-
     p3=4
 	if ftchnls(2) == 1 then
 		asigl loscil p5, 1, 2, 1, 0
@@ -129,11 +149,8 @@ instr 3
 	    asigl, asigr loscil p5, 1, 2, 1, 0
 	endif
 	out asigl
-
 endin
-
 instr 4
-
     p3=4
 	if ftchnls(3) == 1 then
 		asigl loscil p5, 1, 3, 1, 0
@@ -142,11 +159,8 @@ instr 4
 	    asigl, asigr loscil p5, 1, 3, 1, 0
 	endif
 	out asigl
-
 endin
-
 instr 5
-
     p3=4
 	if ftchnls(4) == 1 then
 		asigl loscil p5, 1, 4, 1, 0
@@ -155,11 +169,8 @@ instr 5
 	    asigl, asigr loscil p5, 1, 4, 1, 0
 	endif
 	out asigl
-
 endin
-
 instr 6
-
     p3=4
 	if ftchnls(5) == 1 then
 		asigl loscil p5, 1, 5, 1, 0
@@ -168,11 +179,8 @@ instr 6
 	    asigl, asigr loscil p5, 1, 5, 1, 0
 	endif
 	out asigl
-
 endin
-
 instr 7
-
     p3=4
 	if ftchnls(6) == 1 then
 		asigl loscil p5, 1, 6, 1, 0
@@ -181,11 +189,8 @@ instr 7
 	    asigl, asigr loscil p5, 1, 6, 1, 0
 	endif
 	out asigl
-
 endin
-
 instr 8
-
     p3=4
 	if ftchnls(7) == 1 then
 		asigl loscil p5, 1, 7, 1, 0
@@ -194,11 +199,8 @@ instr 8
 	    asigl, asigr loscil p5, 1, 7, 1, 0
 	endif
 	out asigl
-
 endin
-
 instr 9
-
     p3=4
 	if ftchnls(8) == 1 then
 		asigl loscil p5, 1, 8, 1, 0
@@ -207,11 +209,8 @@ instr 9
 	    asigl, asigr loscil p5, 1, 8, 1, 0
 	endif
 	out asigl
-
 endin
-
 instr 10
-
     p3=4
 	if ftchnls(9) == 1 then
 		asigl loscil p5, 1, 9, 1, 0
@@ -220,12 +219,9 @@ instr 10
 	    asigl, asigr loscil p5, 1, 9, 1, 0
 	endif
 	out asigl
-
 endin
-
 </CsInstruments>
 <CsScore>
-
 f 1 0 0 1 "drums/LinnDrumKick.wav" 0 0 0
 f 2 0 0 1 "drums/BD2510.WAV" 0 0 0
 f 3 0 0 1 "drums/SD0010.WAV" 0 0 0
@@ -238,11 +234,8 @@ f 9 0 0 1 "drums/LT50.WAV" 0 0 0
 f 10 0 0 1 "drums/CL.WAV" 0 0 0
 f 11 0 0 1 "drums/MA.WAV" 0 0 0
 f 12 0 0 1 "drums/CH.WAV" 0 0 0
-
-
 '''
 csd = csd + output + '''
-
 </CsScore>
 </CsoundSynthesizer>
 '''
