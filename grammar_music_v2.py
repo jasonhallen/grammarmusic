@@ -24,7 +24,7 @@ rules = {
   ],
 
   "score": [
-    "t 0 [tempo:#set_tempo#]#tempo#\n#[#set_mode#][#set_voices#]voices_template#\n"
+    "t 0 [tempo:#set_tempo#]#tempo#\n[#set_mode#][#set_drums#][#set_voices#]; #mode# #drums#\n #voices_template#\n"
   ],
 
   "set_repeat": [
@@ -56,7 +56,7 @@ rules = {
   ],
 
   "max_loop_length": [
-    "(6*4*7)"
+    "(6*4*7*2)"
   ],
 
   "6_voices": [
@@ -64,15 +64,19 @@ rules = {
   ],
 
   "voice_constructor": [
-    "#set_measures#\nb [store1:#measures#*4*#repeat#] $BO#store1#$BC\n#set_measures#"
+    "[loop1:#set_measures#][store1:#measures#*4*#repeat#][loop2:#set_measures#][store2:#measures#*4*#repeat#][store3:#max_loop_length#-(#store1#+#store2#)]b $BO#store3#$BC\n#loop1#\nb $BO#store3#+#store1#$BC\n#loop2#"
   ],
 
   "set_measures": [
-    "[measures:3][#set_inst#]b 0\n{ #[repeat:#set_repeat#]repeat# CNT\n#measure_1# #measure# #measure#}\n","[measures:4][#set_inst#]b 0\n{ #[repeat:#set_repeat#]repeat# CNT\n#measure_1# #measure# #measure# #measure#}\n","[measures:5][#set_inst#]b 0\n{ #[repeat:#set_repeat#]repeat# CNT\n#measure_1# #measure# #measure# #measure# #measure#}\n","[measures:6][#set_inst#]b 0\n{ #[repeat:#set_repeat#]repeat# CNT\n#measure_1# #measure# #measure# #measure# #measure# #measure#}\n"
+    "[measures:3][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT\n#measure_1# #measure# #measure#}\n","[measures:4][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT\n#measure_1# #measure# #measure# #measure#}\n","[measures:5][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT\n#measure_1# #measure# #measure# #measure# #measure#}\n","[measures:6][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT\n#measure_1# #measure# #measure# #measure# #measure# #measure#}\n"
   ],
 
   "set_mode": [
     "[mode:atonal][note_options:.00,.01,.02,.03,.04,.05,.06,.07,.08,.09,.10,.11,.12]","[mode:aeolian][note_options:.00,.00,.00,.02,.03,.05,.07,.08,.10,.12]","[mode:dorian][note_options:.00,.00,.00,.02,.03,.05,.07,.09,.10,.12]","[mode:ionian][note_options:.00,.00,.00,.02,.04,.05,.07,.09,.11,.12]","[mode:phrygian][note_options:.00,.00,.00,.01,.03,.05,.07,.08,.10,.12]","[mode:lydian][note_options:.00,.00,.00,.02,.04,.06,.07,.09,.11,.12]","[mode:mixolydian][note_options:.00,.00,.00,.02,.04,.05,.07,.09,.10,.12]","[mode:locrian][note_options:.00,.00,.00,.01,.03,.05,.06,.08,.10,.12]"
+  ],
+
+  "set_drums": [
+    "[drums:tr808][drum_options:2,3,4,5,6,7,8,9,10,11,12]","[drums:emu][drum_options:13,14,15,16,17,18,19,20,21,22,23,24]"
   ],
 
   "set_inst": [
@@ -80,7 +84,7 @@ rules = {
   ],
 
   "register": [
-    "7","8","9","10"
+    "6","7","8","9"
   ],
 
   "measure_1": [
@@ -100,7 +104,7 @@ rules = {
   ],
 
   "inst": [
-    "1","1","1","2","3","4","5","6","7","8","9","10","11","12"
+    "1","1","1","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#"
   ],
 
   "set_offset": [
@@ -159,126 +163,18 @@ instr 1
     aSig	clfilt	aSig, kcf, 0, 2					; butterworth lowpass filter
     out aSig*aEnv*1.5
 endin
-instr 2
+
+instr 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24
     p3=4
-	if ftchnls(1) == 1 then
-		asigl loscil p5, 1, 1, 1, 0
+	if ftchnls(p1) == 1 then
+		asigl loscil p5, 1, p1, 1, 0
 		asigr = asigl
-	elseif ftchnls(1) == 2 then
-	    asigl, asigr loscil p5, 1, 1, 1, 0
+	elseif ftchnls(p1) == 2 then
+	    asigl, asigr loscil p5, 1, p1, 1, 0
 	endif
 	out asigl
 endin
-instr 3
-    p3=4
-	if ftchnls(2) == 1 then
-		asigl loscil p5, 1, 2, 1, 0
-		asigr = asigl
-	elseif ftchnls(2) == 2 then
-	    asigl, asigr loscil p5, 1, 2, 1, 0
-	endif
-	out asigl
-endin
-instr 4
-    p3=4
-	if ftchnls(3) == 1 then
-		asigl loscil p5, 1, 3, 1, 0
-		asigr = asigl
-	elseif ftchnls(3) == 2 then
-	    asigl, asigr loscil p5, 1, 3, 1, 0
-	endif
-	out asigl
-endin
-instr 5
-    p3=4
-	if ftchnls(4) == 1 then
-		asigl loscil p5, 1, 4, 1, 0
-		asigr = asigl
-	elseif ftchnls(4) == 2 then
-	    asigl, asigr loscil p5, 1, 4, 1, 0
-	endif
-	out asigl
-endin
-instr 6
-    p3=4
-	if ftchnls(5) == 1 then
-		asigl loscil p5, 1, 5, 1, 0
-		asigr = asigl
-	elseif ftchnls(5) == 2 then
-	    asigl, asigr loscil p5, 1, 5, 1, 0
-	endif
-	out asigl
-endin
-instr 7
-    p3=4
-	if ftchnls(6) == 1 then
-		asigl loscil p5, 1, 6, 1, 0
-		asigr = asigl
-	elseif ftchnls(6) == 2 then
-	    asigl, asigr loscil p5, 1, 6, 1, 0
-	endif
-	out asigl
-endin
-instr 8
-    p3=4
-	if ftchnls(7) == 1 then
-		asigl loscil p5, 1, 7, 1, 0
-		asigr = asigl
-	elseif ftchnls(7) == 2 then
-	    asigl, asigr loscil p5, 1, 7, 1, 0
-	endif
-	out asigl
-endin
-instr 9
-    p3=4
-	if ftchnls(8) == 1 then
-		asigl loscil p5, 1, 8, 1, 0
-		asigr = asigl
-	elseif ftchnls(8) == 2 then
-	    asigl, asigr loscil p5, 1, 8, 1, 0
-	endif
-	out asigl
-endin
-instr 10
-    p3=4
-	if ftchnls(9) == 1 then
-		asigl loscil p5, 1, 9, 1, 0
-		asigr = asigl
-	elseif ftchnls(9) == 2 then
-	    asigl, asigr loscil p5, 1, 9, 1, 0
-	endif
-	out asigl
-endin
-instr 11
-    p3=4
-	if ftchnls(10) == 1 then
-		asigl loscil p5, 1, 10, 1, 0
-		asigr = asigl
-	elseif ftchnls(10) == 2 then
-	    asigl, asigr loscil p5, 1, 10, 1, 0
-	endif
-	out asigl
-endin
-instr 12
-    p3=4
-	if ftchnls(11) == 1 then
-		asigl loscil p5, 1, 11, 1, 0
-		asigr = asigl
-	elseif ftchnls(11) == 2 then
-	    asigl, asigr loscil p5, 1, 11, 1, 0
-	endif
-	out asigl
-endin
-instr 13
-    p3=4
-	if ftchnls(12) == 1 then
-		asigl loscil p5, 1, 12, 1, 0
-		asigr = asigl
-	elseif ftchnls(12) == 2 then
-	    asigl, asigr loscil p5, 1, 12, 1, 0
-	endif
-	out asigl
-endin
+
 </CsInstruments>
 <CsScore>
 f 1 0 0 1 "drums/LinnDrumKick.wav" 0 0 0
@@ -293,7 +189,18 @@ f 9 0 0 1 "drums/LT50.WAV" 0 0 0
 f 10 0 0 1 "drums/CL.WAV" 0 0 0
 f 11 0 0 1 "drums/MA.WAV" 0 0 0
 f 12 0 0 1 "drums/CH.WAV" 0 0 0
-
+f 13 0 0 1 "drums/emu/emu_CHH.wav" 0 0 0
+f 14 0 0 1 "drums/emu/emu_Clap.wav" 0 0 0
+f 15 0 0 1 "drums/emu/emu_Cowbell.wav" 0 0 0
+f 16 0 0 1 "drums/emu/emu_Kick.wav" 0 0 0
+f 17 0 0 1 "drums/emu/emu_OHH.wav" 0 0 0
+f 18 0 0 1 "drums/emu/emu_Ride.wav" 0 0 0
+f 19 0 0 1 "drums/emu/emu_Rim.wav" 0 0 0
+f 20 0 0 1 "drums/emu/emu_Snare.wav" 0 0 0
+f 21 0 0 1 "drums/emu/emu_Tom1.wav" 0 0 0
+f 22 0 0 1 "drums/emu/emu_Tom2.wav" 0 0 0
+f 23 0 0 1 "drums/emu/emu_Tom3.wav" 0 0 0
+f 24 0 0 1 "drums/emu/emu_Wood_Block.wav" 0 0 0
 '''
 csd = csd + output + '''
 
