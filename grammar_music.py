@@ -67,7 +67,7 @@ rules = {
   ],
 
   "set_inst": [
-    "[inst_set:#inst#][register:#register#]"
+    "[inst_set:#inst#][inst_register:#register#]"
   ],
 
   "register": [
@@ -83,11 +83,11 @@ rules = {
   ],
 
   "note_1": [
-    "i #inst_set# $BO0+[#set_offset#]#offset#+$CNT*#measures#*4$BC 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#register#+#note_options#$BC ;#mode#"
+    "i #inst_set# $BO0+[#set_offset#]#offset#+$CNT*#measures#*4$BC 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options#$BC ;#mode#"
   ],
 
   "note": [
-    "i #inst_set# + 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#register#+#note_options#$BC ;#mode#"
+    "i #inst_set# + 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options#$BC ;#mode#"
   ],
 
   "inst": [
