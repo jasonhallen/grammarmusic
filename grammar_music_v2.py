@@ -12,7 +12,7 @@ from datetime import datetime
 # Save sections and return to them
 # Let sections mutate with new note values
 # Suggest some starting rhythmic templates
-# Create more interesting instruments
+# Add instruments - bass, organ, sax, synth, clavinet, rhodes
 # Adjust instrument levels to mix better
 # Add effects channels randomly selected (e.g. reverb, delay, filter)
 # Add breathing spaces between parts (i.e. Eli Keszler)
@@ -28,7 +28,7 @@ rules = {
   ],
 
   "set_repeat": [
-    "4","5","6","7"
+    "5","6","7","8"
   ],
 
   "set_tempo": [
@@ -56,7 +56,7 @@ rules = {
   ],
 
   "max_loop_length": [
-    "(6*4*7*2)"
+    "(6*4*8*1)"
   ],
 
   "6_voices": [
@@ -64,7 +64,7 @@ rules = {
   ],
 
   "voice_constructor": [
-    "[loop1:#set_measures#][store1:#measures#*4*#repeat#][loop2:#set_measures#][store2:#measures#*4*#repeat#][store3:#max_loop_length#-(#store1#+#store2#)]b $BO#store3#$BC\n#loop1#\nb $BO#store3#+#store1#$BC\n#loop2#"
+    "[loop1:#set_measures#][store1:#measures#*4*#repeat#][store3:#max_loop_length#-(#store1#+#store2#)]b $BO#max_loop_length#-#store1#$BC\n#loop1#\n"
   ],
 
   "set_measures": [
@@ -76,7 +76,7 @@ rules = {
   ],
 
   "set_drums": [
-    "[drums:tr808][drum_options:2,3,4,5,6,7,8,9,10,11,12]","[drums:emu][drum_options:13,14,15,16,17,18,19,20,21,22,23,24]"
+    "[drums:tr808][drum_options:2,5,6,7,8,9,10,11,12]","[drums:emu][drum_options:13,14,15,16,17,18,19,20,21,22,23,24]"
   ],
 
   "set_inst": [
@@ -96,11 +96,11 @@ rules = {
   ],
 
   "note_1": [
-    "i #inst_set# $BO0+[#set_offset#]#offset#+$CNT*#measures#*4$BC 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options#$BC ;#mode#"
+    "i #inst_set# $BO0+[#set_offset#]#offset#+$CNT*#measures#*4$BC 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options#$BC"
   ],
 
   "note": [
-    "i #inst_set# + 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options#$BC ;#mode#"
+    "i #inst_set# + 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options#$BC"
   ],
 
   "inst": [
@@ -108,7 +108,7 @@ rules = {
   ],
 
   "set_offset": [
-    "[offset:0]","[offset:0]","[offset:0]","[offset:0.25]","[offset:0.5]","[offset:0.75]"
+    "[offset:0]","[offset:0]","[offset:0]","[offset:0.5]","[offset:0.5]"
   ],
 
   "dur": [
