@@ -6,16 +6,14 @@ from datetime import datetime
 
 # TASKS
 # Rules for melody selection that emphasize smaller steps and the fundamental
-# Allow individual notes to be offset by 0,0.25,0.5,0.75 instead of the whole line
-# Free floating instruments, looping, evolving, superimposed on each other, shifting sounds
+# Different number of measures per section (e.g. 4, 8, 12)
 # 3/4 time
 # Save sections and return to them
 # Let sections mutate with new note values
 # Suggest some starting rhythmic templates
-# Add instruments - bass, organ, sax, synth, clavinet, rhodes
+# Create more interesting instruments
 # Adjust instrument levels to mix better
 # Add effects channels randomly selected (e.g. reverb, delay, filter)
-# Add breathing spaces between parts (i.e. Eli Keszler)
 
 rules = {
 
@@ -24,7 +22,7 @@ rules = {
   ],
 
   "score": [
-    "[#set_mode#][#set_drums#][#set_voices#]; #mode# #drums# voices=#voices#\nt 0 [tempo:#set_tempo#]#tempo#\n#voices_template#\n"
+    "t 0 [tempo:#set_tempo#]#tempo#\n[#set_mode#][#set_drums#][#set_voices#]; #mode# #drums#\n#voices_template#\n"
   ],
 
   "set_repeat": [
@@ -32,11 +30,11 @@ rules = {
   ],
 
   "set_tempo": [
-    "200","210","220","230","240","250","260","270","280","290","300","310","320","330","340","350","360","370","380","390","400","410","420","430"
+    "200","210","220","230","240","250","260","270","280","290","300","310","320","330","340","350","360","370","380","390","400"
   ],
 
   "set_voices": [
-    "[voices:1][voices_template:#1_voices#]","[voices:2][voices_template:#2_voices#]","[voices:3][voices_template:#3_voices#]","[voices:4][voices_template:#4_voices#]","[voices:5][voices_template:#5_voices#]","[voices:6][voices_template:#6_voices#]"
+    "[voices:6][voices_template:#6_voices#]"
   ],
 
   "2_voices": [
@@ -57,26 +55,6 @@ rules = {
 
   "max_loop_length": [
     "(6*4*8*1)"
-  ],
-
-  "1_voices": [
-    "#voice_constructor#\n"
-  ],
-
-  "2_voices": [
-    "#voice_constructor#\n#voice_constructor#\n",
-  ],
-
-  "3_voices": [
-    "#voice_constructor#\n#voice_constructor#\n#voice_constructor#\n",
-  ],
-
-  "4_voices": [
-    "#voice_constructor#\n#voice_constructor#\n#voice_constructor#\n#voice_constructor#\n",
-  ],
-
-  "5_voices": [
-    "#voice_constructor#\n#voice_constructor#\n#voice_constructor#\n#voice_constructor#\n#voice_constructor#\n",
   ],
 
   "6_voices": [
@@ -120,7 +98,7 @@ rules = {
   ],
 
   "evolve_note1": [
-    "#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#[note1_evolve:#note#]note1_evolve#"
+    "#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#[note1_evolve:#note1#]note1_evolve#"
   ],
 
   "evolve_note2": [
@@ -286,90 +264,3 @@ for i in range(1):
     output = output.replace("$BC","]")
     print(output)
     print()
-
-cs = ctcsound.Csound()
-
-csd = '''
-<CsoundSynthesizer>
-<CsOptions>
--odac
-</CsOptions>
-<CsInstruments>
-sr = 44100
-ksmps = 10
-0dbfs = 1
-instr 1
-    p3=p4
-    seed 0
-    irefl	random 0.001, 0.999
-    aEnv	linsegr	0, 0.005, 1, p3-0.105, 1, 0.1, 0		; amplitude envelope
-    iPlk	random	0.1, 0.3					; point at which to pluck the string
-    iDtn	random    -0.05, 0.05					; random detune
-    ;irefl	table	inum, giScal1					; read reflection value from giScal table according to note number
-    aSig	wgpluck2  0.58, p5, cpspch(p6), iPlk, irefl	; generate Karplus-Strong plucked string audio
-    kcf	expon	cpsoct(rnd(6)+6),p3,50				; filter cutoff frequency envelope
-    aSig	clfilt	aSig, kcf, 0, 2					; butterworth lowpass filter
-    out aSig*aEnv*1.5
-endin
-
-instr 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24
-    p3=4
-	if ftchnls(p1) == 1 then
-		asigl loscil p5, 1, p1, 1, 0
-		asigr = asigl
-	elseif ftchnls(p1) == 2 then
-	    asigl, asigr loscil p5, 1, p1, 1, 0
-	endif
-	out asigl
-endin
-
-</CsInstruments>
-<CsScore>
-f 1 0 0 1 "drums/LinnDrumKick.wav" 0 0 0
-f 2 0 0 1 "drums/BD2510.WAV" 0 0 0
-f 3 0 0 1 "drums/SD0010.WAV" 0 0 0
-f 4 0 0 1 "drums/CP.WAV" 0 0 0
-f 5 0 0 1 "drums/OH00.WAV" 0 0 0
-f 6 0 0 1 "drums/MT00.WAV" 0 0 0
-f 7 0 0 1 "drums/CY0050.WAV" 0 0 0
-f 8 0 0 1 "drums/RS.WAV" 0 0 0
-f 9 0 0 1 "drums/LT50.WAV" 0 0 0
-f 10 0 0 1 "drums/CL.WAV" 0 0 0
-f 11 0 0 1 "drums/MA.WAV" 0 0 0
-f 12 0 0 1 "drums/CH.WAV" 0 0 0
-f 13 0 0 1 "drums/emu/emu_CHH.wav" 0 0 0
-f 14 0 0 1 "drums/emu/emu_Clap.wav" 0 0 0
-f 15 0 0 1 "drums/emu/emu_Cowbell.wav" 0 0 0
-f 16 0 0 1 "drums/emu/emu_Kick.wav" 0 0 0
-f 17 0 0 1 "drums/emu/emu_OHH.wav" 0 0 0
-f 18 0 0 1 "drums/emu/emu_Ride.wav" 0 0 0
-f 19 0 0 1 "drums/emu/emu_Rim.wav" 0 0 0
-f 20 0 0 1 "drums/emu/emu_Snare.wav" 0 0 0
-f 21 0 0 1 "drums/emu/emu_Tom1.wav" 0 0 0
-f 22 0 0 1 "drums/emu/emu_Tom2.wav" 0 0 0
-f 23 0 0 1 "drums/emu/emu_Tom3.wav" 0 0 0
-f 24 0 0 1 "drums/emu/emu_Wood_Block.wav" 0 0 0
-'''
-csd = csd + output + '''
-
-
-</CsScore>
-</CsoundSynthesizer>
-'''
-
-ret = cs.compileCsdText(csd)
-if ret == ctcsound.CSOUND_SUCCESS:
-    cs.start()
-    cs.perform()
-    cs.reset()
-
-title_chars=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","1","2","3","4","5","6","7","8","9"]
-title = ""
-for i in range(7):
-    title += choice(title_chars)
-date = datetime.today().strftime('%Y_%m_%d')
-filename = "output/"+date+"_"+title+".csd"
-
-with open(filename, "w") as f:
-    f.write(csd)
-f.close()
