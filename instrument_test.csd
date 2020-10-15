@@ -1,9 +1,9 @@
 <CsoundSynthesizer>
 <CsOptions>
--n -d 
+-n -d
 </CsOptions>
 <CsInstruments>
-; Initialize the global variables. 
+; Initialize the global variables.
 ksmps = 32
 nchnls = 2
 0dbfs = 1
@@ -17,10 +17,10 @@ instr 1
     aEnv	linsegr	0, 0.005, 1, p3-0.105, 1, 0.1, 0		; amplitude envelope
     iPlk	random	0.1, 0.3					; point at which to pluck the string
     iDtn	random    -0.05, 0.05					; random detune
-    ;irefl	table	inum, giScal1					; read reflection value from giScal table according to note number  
-    aSig	wgpluck2  0.58, 0.5, cpspch(p5), iPlk, irefl	; generate Karplus-Strong plucked string audio 
+    ;irefl	table	inum, giScal1					; read reflection value from giScal table according to note number
+    aSig	wgpluck2  0.58, 0.5, cpspch(p5), iPlk, irefl	; generate Karplus-Strong plucked string audio
     kcf	expon	cpsoct(rnd(6)+6),p3,50				; filter cutoff frequency envelope
-    aSig	clfilt	aSig, kcf, 0, 2					; butterworth lowpass filter	
+    aSig	clfilt	aSig, kcf, 0, 2					; butterworth lowpass filter
     outs aSig,aSig
 
 endin
@@ -34,9 +34,44 @@ instr 2
 
 endin
 
+instr 3
+  ifrq = cpspch(p5)
+
+  kenv madsr 0.001,0.5,0.7,0.2
+
+  a1     oscili 8/43,   1      * ifrq
+  a2     oscili 8/43,   2      * ifrq
+  a3     oscili 8/43,   2.9966 * ifrq
+  a4     oscili 8/43,   4      * ifrq
+  a5     oscili 3/43,   5.9932 * ifrq
+  a6     oscili 2/43,   8      * ifrq
+  a7     oscili 1/43,  10.0794 * ifrq
+  a8     oscili 1/43,  11.9864 * ifrq
+  a9     oscili 4/43,  16      * ifrq
+
+  aorgan = kenv*p4*0.5*(a1+a2+a3+a4+a5+a6+a7+a8+a9)
+
+  outs aorgan, aorgan
+endin
+
+instr 4
+
+kfreq cpspch p5
+kc1 = p6
+kc2 = p7
+kvrate = 6
+
+kvdpth line 0, p3, p8
+asig   fmb3 p4, kfreq, kc1, kc2, kvdpth, kvrate
+       outs asig, asig
+
+endin
+
 </CsInstruments>
 <CsScore>
-i2 0 3 0.5 8.00
+i3 0 1 0.8 8.00
+i3 + . . [8.00+0.07]
+;i4 4 3 0.3 8.00 5 5 0.1
 
 </CsScore>
 </CsoundSynthesizer>
