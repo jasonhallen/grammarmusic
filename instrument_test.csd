@@ -67,11 +67,39 @@ asig   fmb3 p4, kfreq, kc1, kc2, kvdpth, kvrate
 
 endin
 
+instr 5
+
+    kamp = p4
+    kfreq = cpspch(p5)
+    kc1 = p6
+    kc2 = p7
+    kvdepth = 0.1
+    kvrate = 5
+
+    asig fmbell kamp, kfreq, kc1, kc2, kvdepth, kvrate, -1, -1, -1, -1, -1, 1
+         outs asig, asig
+endin
+
+instr 6 ;STRING PLUCK
+    p3=p4
+    seed 0
+    irefl	random 0.001, 0.999
+    aEnv	linsegr	0, 0.005, 1, p3-0.105, 1, 0.1, 0		; amplitude envelope
+    iPlk	random	0.1, 0.3					; point at which to pluck the string
+    iDtn	random    -0.05, 0.05					; random detune
+    ;irefl	table	inum, giScal1					; read reflection value from giScal table according to note number
+    aSig	wgpluck2  0.58, p5, cpspch(p6), iPlk, irefl	; generate Karplus-Strong plucked string audio
+    kcf	expon	cpsoct(rnd(6)+6),p3,50				; filter cutoff frequency envelope
+    aSig	clfilt	aSig, kcf, 0, 2					; butterworth lowpass filter
+    outs aSig*aEnv,aSig*aEnv
+endin
+
 </CsInstruments>
 <CsScore>
-i3 0 1 0.8 8.00
-i3 + . . [8.00+0.07]
-;i4 4 3 0.3 8.00 5 5 0.1
-
+;i3 0 1 0.8 10.00
+;i3 + . . [10.00+0.07]
+;i4 0 3 0.3 6.00 5 5 0.1
+;i5 0 1 0.2 10.00 10 5
+i6 0 3 1 0.6 6.00
 </CsScore>
 </CsoundSynthesizer>

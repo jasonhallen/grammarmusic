@@ -11,7 +11,8 @@ from datetime import datetime
 # Save sections and return to them
 # Let sections mutate with new note values
 # Suggest some starting rhythmic templates
-# Add instruments - bass, organ, sax, synth, clavinet, rhodes
+# Add instruments - bass, organ, sax, synth, clavinet, rhodes, chimes
+# Separate instruments into parts - rhythm, melody, bass
 # Adjust instrument levels to mix better
 # Add effects channels randomly selected (e.g. reverb, delay, filter)
 # Add breathing spaces between parts (i.e. Eli Keszler)
@@ -23,19 +24,15 @@ rules = {
   ],
 
   "score": [
-    "[#set_mode#][note_offset_1:#set_note_offset#][key_change:#set_note_offset#][#set_drums#][#set_voices#]; #mode# #drums# voices=#voices#\nt 0 [tempo:#set_tempo#]#tempo#\n#voices_template#\n"
+    "[#set_mode#][note_offset_1:#set_note_offset#][key_change:#note_offset_1#+0.07][#set_drums#][#set_voices#]; #mode# #drums# voices=#voices# key1=#note_offset_1# key2=#key_change#\nt 0 [tempo:#set_tempo#]#tempo#\n#voices_template#\n"
   ],
 
   "set_mode": [
-    "[mode:atonal][note_options:.00,.01,.02,.03,.04,.05,.06,.07,.08,.09,.10,.11,.12]","[mode:aeolian][note_options:.00,.00,.00,.02,.03,.05,.07,.08,.10,.12]","[mode:dorian][note_options:.00,.00,.00,.02,.03,.05,.07,.09,.10,.12]","[mode:ionian][note_options:.00,.00,.00,.02,.04,.05,.07,.09,.11,.12]","[mode:phrygian][note_options:.00,.00,.00,.01,.03,.05,.07,.08,.10,.12]","[mode:lydian][note_options:.00,.00,.00,.02,.04,.06,.07,.09,.11,.12]","[mode:mixolydian][note_options:.00,.00,.00,.02,.04,.05,.07,.09,.10,.12]","[mode:locrian][note_options:.00,.00,.00,.01,.03,.05,.06,.08,.10,.12]"
+    "[mode:aeolian][note_options:.00,.00,.00,.02,.03,.05,.07,.08,.10,.12]","[mode:dorian][note_options:.00,.00,.00,.02,.03,.05,.07,.09,.10,.12]","[mode:ionian][note_options:.00,.00,.00,.02,.04,.05,.07,.09,.11,.12]","[mode:phrygian][note_options:.00,.00,.00,.01,.03,.05,.07,.08,.10,.12]","[mode:lydian][note_options:.00,.00,.00,.02,.04,.06,.07,.09,.11,.12]","[mode:mixolydian][note_options:.00,.00,.00,.02,.04,.05,.07,.09,.10,.12]","[mode:locrian][note_options:.00,.00,.00,.01,.03,.05,.06,.08,.10,.12]"
   ],
 
   "set_note_offset": [
     "-1","-0.99","-0.98","-0.97","-0.96","-0.95","-0.94","-0.93","-0.92","-0.91","-0.9","-0.89","+0.12","+0.11","+0.10","+0.9","+0.08","+0.07","+0.06","+0.05","+0.04","+0.03","+0.02","+0.01","+0"
-  ],
-
-  "set_drums": [
-    "[drums:tr808][drum_options:1,2,3,4,5,6,7,8,9,10,11]","[drums:emu][drum_options:12,13,14,15,16,17,18,19,20,21,22,23]","[drums:linn][drum_options:24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]"
   ],
 
   "set_voices": [
@@ -75,15 +72,33 @@ rules = {
   ],
 
   "7_voices": [
-    "#voice_constructor#\n#voice_constructor#\n#voice_constructor#\n#voice_constructor#\n#voice_constructor#\n#voice_constructor#\n#voice_constructor#\n",
+    "[inst:#drum_parts#][inst_register:#register#]#voice_constructor#\n[inst:#drum_parts#][inst_register:#register#]#voice_constructor#\n[inst:#drum_parts#][inst_register:#register#]#voice_constructor#\n[inst:#drum_parts#][inst_register:#register#]#voice_constructor#\n[inst:#melody_parts#][inst_register:#register#]#voice_constructor#\n[inst:#melody_parts#][inst_register:#register#]#voice_constructor#\n[inst:#melody_parts#][inst_register:#register#]#voice_constructor#\n",
   ],
 
   "voice_constructor": [
-    "[note_offset:#note_offset_1#][loop1:#set_measures#][store1:#measures#*4*#repeat#][store3:#max_loop_length#-(#store1#+#store2#)]b $BO#max_loop_length#-#store1#$BC ; loop1 #mode#\n#loop1#\n\n; evolve 1 #mode#\n#evolve_section_1#\n[#mode1#]; evovle 2, #mode#\n#evolve_section_2#\n"
+    "[note_offset:#note_offset_1#][loop1:#set_measures#][store1:#measures#*4*#repeat#][store3:#max_loop_length#-(#store1#+#store2#)]b $BO#max_loop_length#-#store1#$BC ; loop1 #mode#\n#loop1#\n\n; evolve 1 #mode#\n#evolve_section_1#\n[#mode1#]; evovle 2, #mode#\n#evolve_section_2#\n[#mode1#]; evovle 3, #mode#\n#evolve_section_3#\n"
+  ],
+
+  "set_drums": [
+     "[drums:tr808][drum_parts:1,2,3,4,5,6,7,8,9,10,11][register:8]","[drums:emu][drum_parts:12,13,14,15,16,17,18,19,20,21,22,23][register:8]","[drums:linn][drum_parts:24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40][register:8]","[drums:oberheim][drum_parts:41,42,43,44,45,46,47,48,49][register:8]"
+   ],
+
+  "melody_parts": [
+    "#100#","#101#","#102#"
+  ],
+
+  "100": [
+    "[name:string_pluck][register:6,7,8,9]100"
+  ],
+  "101": [
+    "[name:organ][register:6,7,8,9]101"
+  ],
+  "102": [
+    "[name:chime][register:9,10,11,12]102"
   ],
 
   "set_measures": [
-    "[measures:3][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12#}\n[evolve_section_1:#evolve_3#][note_offset:#key_change#][evolve_section_2:#evolve_3#]","[measures:4][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16#}\n[evolve_section_1:#evolve_4#][note_offset:#key_change#][evolve_section_2:#evolve_4#]","[measures:5][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20#}\n[evolve_section_1:#evolve_5#][note_offset:#key_change#][evolve_section_2:#evolve_5#]","[measures:6][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20# #[note21:#note#]note21# #[note22:#note#]note22# #[note23:#note#]note23# #[note24:#note#]note24#}\n[evolve_section_1:#evolve_6#][note_offset:#key_change#][evolve_section_2:#evolve_6#]"
+    "[measures:3]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12#}\n[evolve_section_1:#evolve_3#][note_offset:#key_change#][evolve_section_2:#evolve_3#][evolve_section_3:#evolve_3#]","[measures:4]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16#}\n[evolve_section_1:#evolve_4#][note_offset:#key_change#][evolve_section_2:#evolve_4#][evolve_section_3:#evolve_4#]","[measures:5]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20#}\n[evolve_section_1:#evolve_5#][note_offset:#key_change#][evolve_section_2:#evolve_5#][evolve_section_3:#evolve_5#]","[measures:6]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20# #[note21:#note#]note21# #[note22:#note#]note22# #[note23:#note#]note23# #[note24:#note#]note24#}\n[evolve_section_1:#evolve_6#][note_offset:#key_change#][evolve_section_2:#evolve_6#][evolve_section_3:#evolve_6#]"
   ],
 
   "set_repeat": [
@@ -123,107 +138,99 @@ rules = {
   ],
 
   "evolve_note1": [
-    "#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#[note1_evolve:#note#]note1_evolve#"
+    "#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#[note1_evolve:#note#]note1_evolve#"
   ],
 
   "evolve_note2": [
-    "#note2#","#note2#","#note2#","#note2#","#note2#","#note2#","#[note2:#note#]note2#"
+    "#note2#","#note2#","#note2#","#note2#","#[note2:#note#]note2#"
   ],
 
   "evolve_note3": [
-    "#note3#","#note3#","#note3#","#note3#","#note3#","#note3#","#[note3:#note#]note3#"
+    "#note3#","#note3#","#note3#","#note3#","#[note3:#note#]note3#"
   ],
 
   "evolve_note4": [
-    "#note4#","#note4#","#note4#","#note4#","#note4#","#note4#","#[note4:#note#]note4#"
+    "#note4#","#note4#","#note4#","#note4#","#[note4:#note#]note4#"
   ],
 
   "evolve_note5": [
-    "#note5#","#note5#","#note5#","#note5#","#note5#","#note5#","#[note5:#note#]note5#"
+    "#note5#","#note5#","#note5#","#note5#","#[note5:#note#]note5#"
   ],
 
   "evolve_note6": [
-    "#note6#","#note6#","#note6#","#note6#","#note6#","#note6#","#[note6:#note#]note6#"
+    "#note6#","#note6#","#note6#","#note6#","#[note6:#note#]note6#"
   ],
 
   "evolve_note7": [
-    "#note7#","#note7#","#note7#","#note7#","#note7#","#note7#","#[note7:#note#]note7#"
+    "#note7#","#note7#","#note7#","#note7#","#[note7:#note#]note7#"
   ],
 
   "evolve_note8": [
-    "#note8#","#note8#","#note8#","#note8#","#note8#","#note8#","#[note8:#note#]note8#"
+    "#note8#","#note8#","#note8#","#note8#","#[note8:#note#]note8#"
   ],
 
   "evolve_note9": [
-    "#note9#","#note9#","#note9#","#note9#","#note9#","#note9#","#[note9:#note#]note9#"
+    "#note9#","#note9#","#note9#","#note9#","#[note9:#note#]note9#"
   ],
 
   "evolve_note10": [
-    "#note10#","#note10#","#note10#","#note10#","#[note10:#note#]note10#"
+    "#note10#","#note10#","#[note10:#note#]note10#"
   ],
 
   "evolve_note11": [
-    "#note11#","#note11#","#note11#","#note11#","#note11#","#note11#","#[note11:#note#]note11#"
+    "#note11#","#note11#","#note11#","#note11#","#[note11:#note#]note11#"
   ],
 
   "evolve_note12": [
-    "#note12#","#note12#","#note12#","#note12#","#note12#","#note12#","#[note12:#note#]note12#"
+    "#note12#","#note12#","#note12#","#note12#","#[note12:#note#]note12#"
   ],
 
   "evolve_note13": [
-    "#note13#","#note13#","#note13#","#note13#","#note13#","#note13#","#[note13:#note#]note13#"
+    "#note13#","#note13#","#note13#","#note13#","#[note13:#note#]note13#"
   ],
 
   "evolve_note14": [
-    "#note14#","#note14#","#note14#","#note14#","#note14#","#note14#","#[note14:#note#]note14#"
+    "#note14#","#note14#","#note14#","#note14#","#[note14:#note#]note14#"
   ],
 
   "evolve_note15": [
-    "#note15#","#note15#","#note15#","#note15#","#note15#","#note15#","#[note15:#note#]note15#"
+    "#note15#","#note15#","#note15#","#note15#","#[note15:#note#]note15#"
   ],
 
   "evolve_note16": [
-    "#note16#","#note16#","#note16#","#note16#","#note16#","#note16#","#[note16:#note#]note16#"
+    "#note16#","#note16#","#note16#","#note16#","#[note16:#note#]note16#"
   ],
 
   "evolve_note17": [
-    "#note17#","#note17#","#note17#","#note17#","#note17#","#note17#","#[note17:#note#]note17#"
+    "#note17#","#note17#","#note17#","#note17#","#[note17:#note#]note17#"
   ],
 
   "evolve_note18": [
-    "#note18#","#note18#","#note18#","#note18#","#note18#","#note18#","#[note18:#note#]note18#"
+    "#note18#","#note18#","#note18#","#note18#","#[note18:#note#]note18#"
   ],
 
   "evolve_note19": [
-    "#note19#","#note19#","#note19#","#note19#","#note19#","#note19#","#[note19:#note#]note19#"
+    "#note19#","#note19#","#note19#","#note19#","#[note19:#note#]note19#"
   ],
 
   "evolve_note20": [
-    "#note20#","#note20#","#note20#","#note20#","#note20#","#note20#","#[note20:#note#]note20#"
+    "#note20#","#note20#","#note20#","#note20#","#[note20:#note#]note20#"
   ],
 
   "evolve_note21": [
-    "#note21#","#note21#","#note21#","#note21#","#note21#","#note21#","#[note21:#note#]note21#"
+    "#note21#","#note21#","#note21#","#note21#","#[note21:#note#]note21#"
   ],
 
   "evolve_note22": [
-    "#note22#","#note22#","#note22#","#note22#","#note22#","#note22#","#[note22:#note#]note22#"
+    "#note22#","#note22#","#note22#","#note22#","#[note22:#note#]note22#"
   ],
 
   "evolve_note23": [
-    "#note23#","#note23#","#note23#","#note23#","#note23#","#note23#","#[note23:#note#]note23#"
+    "#note23#","#note23#","#note23#","#note23#","#[note23:#note#]note23#"
   ],
 
   "evolve_note24": [
-    "#note24#","#note24#","#note24#","#note24#","#note24#","#note24#","#[note24:#note#]note24#"
-  ],
-
-  "set_inst": [
-    "[inst_set:#inst#][inst_register:#register#]"
-  ],
-
-  "register": [
-    "6","7","8","9"
+    "#note24#","#note24#","#note24#","#note24#","#[note24:#note#]note24#"
   ],
 
   "measure_1": [
@@ -235,15 +242,11 @@ rules = {
   ],
 
   "note_1": [
-    "i #inst_set# $BO0+$CNT*#measures#*4$BC 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options# #note_offset#$BC\n"
+    "i #inst# $BO0+$CNT*#measures#*4$BC 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options# #note_offset#$BC\n"
   ],
 
   "note": [
-    "i #inst_set# + 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options# #note_offset#$BC\n"
-  ],
-
-  "inst": [
-    "100","100","101","101","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#"
+    "i #inst# + 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options# #note_offset#$BC\n"
   ],
 
   "dur": [
@@ -251,7 +254,7 @@ rules = {
   ],
 
   "set_on_off": [
-    "[note_on_off:0]","[note_on_off:0]","[note_on_off:1]",
+    "[note_on_off:0]","[note_on_off:0]","[note_on_off:0]","[note_on_off:1]",
   ],
 
   "amp": [
@@ -319,7 +322,19 @@ instr 101 ;ORGAN
   out aorgan
 endin
 
-instr 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40
+instr 102; Bell
+    kamp = p5*.3
+    kfreq = cpspch(p6)
+    kc1 = 10
+    kc2 = 5
+    kvdepth = 0.1
+    kvrate = 5
+
+    asig fmbell kamp, kfreq, kc1, kc2, kvdepth, kvrate, -1, -1, -1, -1, -1, 3
+         out asig
+endin
+
+instr 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52
     p3=4
 	if ftchnls(p1) == 1 then
 		asigl loscil p5, 1, p1, 1, 0
@@ -355,7 +370,7 @@ f 20 0 0 1 "drums/emu/emu_Tom1.wav" 0 0 0
 f 21 0 0 1 "drums/emu/emu_Tom2.wav" 0 0 0
 f 22 0 0 1 "drums/emu/emu_Tom3.wav" 0 0 0
 f 23 0 0 1 "drums/emu/emu_Wood_Block.wav" 0 0 0
-f 24 0 0 1 "drums/linn/linn_casaba.wav" 0 0 0
+f 24 0 0 1 "drums/linn/linn_cabasa.wav" 0 0 0
 f 25 0 0 1 "drums/linn/linn_clap.wav" 0 0 0
 f 26 0 0 1 "drums/linn/linn_conga_hi.wav" 0 0 0
 f 27 0 0 1 "drums/linn/linn_conga_low.wav" 0 0 0
@@ -372,6 +387,18 @@ f 37 0 0 1 "drums/linn/linn_tambourine.wav" 0 0 0
 f 38 0 0 1 "drums/linn/linn_tom1.wav" 0 0 0
 f 39 0 0 1 "drums/linn/linn_tom2.wav" 0 0 0
 f 40 0 0 1 "drums/linn/linn_tom3.wav" 0 0 0
+f 41 0 0 1 "drums/oberheim/oberheim_hat_accent.wav" 0 0 0
+f 42 0 0 1 "drums/oberheim/oberheim_hat_closed.wav" 0 0 0
+f 43 0 0 1 "drums/oberheim/oberheim_hat_open.wav" 0 0 0
+f 44 0 0 1 "drums/oberheim/oberheim_kick.wav" 0 0 0
+f 45 0 0 1 "drums/oberheim/oberheim_ride.wav" 0 0 0
+f 46 0 0 1 "drums/oberheim/oberheim_shake.wav" 0 0 0
+f 47 0 0 1 "drums/oberheim/oberheim_snare.wav" 0 0 0
+f 48 0 0 1 "drums/oberheim/oberheim_stick.wav" 0 0 0
+f 49 0 0 1 "drums/oberheim/oberheim_tamborine.wav" 0 0 0
+f 50 0 0 1 "drums/oberheim/oberheim_tom1.wav" 0 0 0
+f 51 0 0 1 "drums/oberheim/oberheim_tom2.wav" 0 0 0
+f 52 0 0 1 "drums/oberheim/oberheim_tom3.wav" 0 0 0
 '''
 csd = csd + output + '''
 

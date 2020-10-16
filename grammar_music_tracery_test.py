@@ -22,31 +22,20 @@ rules = {
   ],
 
   "score": [
-    "[#set_mode#][note_offset1:#set_note_offset#][key_change:#set_note_offset#][#set_drums#][#set_voices#]; note_offset1=#note_offset1# #mode# #drums# voices=#voices# change=#key_change#\nt 0 [tempo:#set_tempo#]#tempo#\n#voices_template#\n"
+    "[#set_mode#][mode1:#set_note_options#][mode2:#set_note_options#][note_offset_1:#set_note_offset#][key_change:#set_note_offset#][#set_drums#][#set_voices#]; #mode# #drums# voices=#voices#\nt 0 [tempo:#set_tempo#]#tempo#\n#voices_template#\n"
   ],
 
   "set_mode": [
-    "[mode:atonal][note_options:.00,.01,.02,.03,.04,.05,.06,.07,.08,.09,.10,.11,.12]","[mode:aeolian][note_options:.00,.00,.00,.02,.03,.05,.07,.08,.10,.12]","[mode:dorian][note_options:.00,.00,.00,.02,.03,.05,.07,.09,.10,.12] ","[mode:ionian][note_options:.00,.00,.00,.02,.04,.05,.07,.09,.11,.12]","[mode:phrygian][note_options:.00,.00,.00,.01,.03,.05,.07,.08,.10,.12]","[mode:lydian][note_options:.00,.00,.00,.02,.04,.06,.07,.09,.11,.12] ","[mode:mixolydian][note_options:.00,.00,.00,.02,.04,.05,.07,.09,.10,.12]","[mode:locrian][note_options:.00,.00,.00,.01,.03,.05,.06,.08,.10,.12] "
+    "[mode:atonal][note_options:.00,.01,.02,.03,.04,.05,.06,.07,.08,.09,.10,.11,.12]","[mode:aeolian][note_options:.00,.00,.00,.02,.03,.05,.07,.08,.10,.12]","[mode:dorian][note_options:.00,.00,.00,.02,.03,.05,.07,.09,.10,.12]","[mode:ionian][note_options:.00,.00,.00,.02,.04,.05,.07,.09,.11,.12]","[mode:phrygian][note_options:.00,.00,.00,.01,.03,.05,.07,.08,.10,.12]","[mode:lydian][note_options:.00,.00,.00,.02,.04,.06,.07,.09,.11,.12]","[mode:mixolydian][note_options:.00,.00,.00,.02,.04,.05,.07,.09,.10,.12]","[mode:locrian][note_options:.00,.00,.00,.01,.03,.05,.06,.08,.10,.12]"
   ],
 
   "set_note_options": [
-    "#aeolian#","#lydian#","#phrygian#"
-  ],
-
-  "aeolian": [
-    "[note_options:1,2,3,4]"
-  ],
-
-  "lydian": [
-    "[note_options:a,b,c,d]"
-  ],
-
-  "phrygian": [
-    "[note_options:w,x,y,z]"
+    "[note_options:.00,.00,.00,.02,.03,.05,.07,.08,.10,.12]","[note_options:.00,.00,.00,.02,.03,.05,.07,.09,.10,.12]",
+"[note_options:.00,.00,.00,.02,.04,.05,.07,.09,.11,.12]","[note_options:.00,.00,.00,.01,.03,.05,.07,.08,.10,.12]","[note_options:.00,.00,.00,.02,.04,.06,.07,.09,.11,.12]","[note_options:.00,.00,.00,.02,.04,.05,.07,.09,.10,.12]","[note_options:.00,.00,.00,.01,.03,.05,.06,.08,.10,.12]"
   ],
 
   "set_note_offset": [
-    "0.12","0.11","0.10","0.9","0.08","0.07","0.06","0.05","0.04","0.03","0.02","0.01","0"
+    "-1","-0.99","-0.98","-0.97","-0.96","-0.95","-0.94","-0.93","-0.92","-0.91","-0.9","-0.89","+0.12","+0.11","+0.10","+0.9","+0.08","+0.07","+0.06","+0.05","+0.04","+0.03","+0.02","+0.01","+0"
   ],
 
   "set_drums": [
@@ -54,7 +43,7 @@ rules = {
   ],
 
   "set_voices": [
-    "[voices:2][voices_template:#2_voices#]"
+    "[voices:7][voices_template:#7_voices#]"
   ],
 
   "set_tempo": [
@@ -94,11 +83,11 @@ rules = {
   ],
 
   "voice_constructor": [
-    "[note_offset:#note_offset1#][loop1:#set_measures#][store1:#measures#*4*#repeat#][store3:#max_loop_length#-(#store1#+#store2#)]b $BO#max_loop_length#-#store1#$BC ; loop1 #mode#\n#loop1#\n\n; evolve 1 #mode#\n#evolve_section_1#\n[note_offset:#key_change#]; evovle 2, #mode#\n#evolve_section_2#\n"
+    "[note_options:#mode1#][note_offset:#note_offset_1#][loop1:#set_measures#][store1:#measures#*4*#repeat#][store3:#max_loop_length#-(#store1#+#store2#)]b $BO#max_loop_length#-#store1#$BC ; loop1 #mode#\n#loop1#\n\n; evolve 1 #mode#\n#evolve_section_1#\n; evovle 2\n#evolve_section_2#\n"
   ],
 
   "set_measures": [
-    "[measures:3][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT ;#note_offset#\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12#}\n[evolve_section_1:#evolve_3#][note_offset:#key_change#][evolve_section_2:#evolve_3#]","[measures:4][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16#}\n[evolve_section_1:#evolve_4#][note_offset:#key_change#][evolve_section_2:#evolve_4#]","[measures:5][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20#}\n[evolve_section_1:#evolve_5#][note_offset:#key_change#][evolve_section_2:#evolve_5#]","[measures:6][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20# #[note21:#note#]note21# #[note22:#note#]note22# #[note23:#note#]note23# #[note24:#note#]note24#}\n[evolve_section_1:#evolve_6#][note_offset:#key_change#][evolve_section_2:#evolve_6#]"
+    "[measures:3][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12#}\n[evolve_section_1:#evolve_3#][note_options:#mode2#][note_offset:#key_change#][evolve_section_2:#evolve_3#]","[measures:4][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16#}\n[evolve_section_1:#evolve_4#][note_options:#mode2#][note_offset:#key_change#][evolve_section_2:#evolve_4#]","[measures:5][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20#}\n[evolve_section_1:#evolve_5#][note_options:#mode2#][note_offset:#key_change#][evolve_section_2:#evolve_5#]","[measures:6][#set_inst#]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20# #[note21:#note#]note21# #[note22:#note#]note22# #[note23:#note#]note23# #[note24:#note#]note24#}\n[evolve_section_1:#evolve_6#][note_options:#mode2#][note_offset:#key_change#][evolve_section_2:#evolve_6#]"
   ],
 
   "set_repeat": [
@@ -250,19 +239,15 @@ rules = {
   ],
 
   "note_1": [
-    "i #inst_set# $BO0+[#set_offset#]#offset#+$CNT*#measures#*4$BC 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options#+#note_offset#$BC\n"
+    "i #inst_set# $BO0+$CNT*#measures#*4$BC 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options# #note_offset#$BC\n"
   ],
 
   "note": [
-    "i #inst_set# + 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options#+#note_offset#$BC\n"
+    "i #inst_set# + 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options# #note_offset#$BC\n"
   ],
 
   "inst": [
     "100","100","101","101","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#","#drum_options#"
-  ],
-
-  "set_offset": [
-    "[offset:0]","[offset:0]","[offset:0]","[offset:0]","[offset:0]"
   ],
 
   "dur": [
