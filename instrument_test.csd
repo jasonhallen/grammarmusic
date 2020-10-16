@@ -94,12 +94,30 @@ instr 6 ;STRING PLUCK
     outs aSig*aEnv,aSig*aEnv
 endin
 
+instr 7
+
+kfreq cpspch p5
+kc1 = 5
+kvdepth = .01
+kvrate = 6
+
+kenv expseg 0.001,0.1,p4,p3-0.2,p4,0.1,0.001
+kc2  line 5, p3, p6
+asig fmpercfl p4*kenv, kfreq, kc1, kc2, kvdepth, kvrate
+     outs asig, asig
+endin
+
+
 </CsInstruments>
 <CsScore>
 ;i3 0 1 0.8 10.00
 ;i3 + . . [10.00+0.07]
 ;i4 0 3 0.3 6.00 5 5 0.1
 ;i5 0 1 0.2 10.00 10 5
-i6 0 3 1 0.6 6.00
+;i6 0 3 1 0.6 6.00
+i7 0 1 0.5 10.00 1
+i7 + . 0.5 10.02 1
+i7 + . 0.5 10.04 1
+i7 + . 0.5 10.05 1
 </CsScore>
 </CsoundSynthesizer>

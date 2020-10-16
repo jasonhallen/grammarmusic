@@ -24,7 +24,7 @@ rules = {
   ],
 
   "score": [
-    "[#set_mode#][note_offset_1:#set_note_offset#][key_change:#note_offset_1#+0.07][#set_drums#][#set_voices#]; #mode# #drums# voices=#voices# key1=#note_offset_1# key2=#key_change#\nt 0 [tempo:#set_tempo#]#tempo#\n#voices_template#\n"
+    "[#set_mode#][note_offset_1:#set_note_offset#][key_change:#note_offset_1#+0.07][#set_drums#][#set_voices#]; #mode# #drums# voices=#voices# key1=#note_offset_1# key2=#key_change#\nt 0 [tempo:#set_tempo#]#tempo#\n#voices_template#\ns\n#end_piece#"
   ],
 
   "set_mode": [
@@ -76,7 +76,7 @@ rules = {
   ],
 
   "voice_constructor": [
-    "[note_offset:#note_offset_1#][loop1:#set_measures#][store1:#measures#*4*#repeat#][store3:#max_loop_length#-(#store1#+#store2#)]b $BO#max_loop_length#-#store1#$BC ; loop1 #mode#\n#loop1#\n\n; evolve 1 #mode#\n#evolve_section_1#\n[#mode1#]; evovle 2, #mode#\n#evolve_section_2#\n[#mode1#]; evovle 3, #mode#\n#evolve_section_3#\n"
+    "[note_offset:#note_offset_1#][loop1:#set_measures#][repeat:#set_repeat#]b $BO#max_loop_length#-#measures#*4*#repeat#$BC ; loop1 #mode#\n{ #repeat# CNT\n#loop1#}\n\n; evolve 1 #mode#\n#evolve_section_1#\n[#mode1#]; evovle 2, #mode#\n#evolve_section_2#\n[#mode1#]; evovle 3, #mode#\n#evolve_section_3#\n"
   ],
 
   "set_drums": [
@@ -84,21 +84,27 @@ rules = {
    ],
 
   "melody_parts": [
-    "#100#","#101#","#102#"
+    "#100#","#101#","#102#","#103#"
   ],
 
   "100": [
     "[name:string_pluck][register:6,7,8,9]100"
   ],
+
   "101": [
     "[name:organ][register:6,7,8,9]101"
   ],
+
   "102": [
-    "[name:chime][register:9,10,11,12]102"
+    "[name:chime][register:9,10,11]102"
+  ],
+
+  "103": [
+    "[name:flute][register:8,9]103"
   ],
 
   "set_measures": [
-    "[measures:3]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12#}\n[evolve_section_1:#evolve_3#][note_offset:#key_change#][evolve_section_2:#evolve_3#][evolve_section_3:#evolve_3#]","[measures:4]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16#}\n[evolve_section_1:#evolve_4#][note_offset:#key_change#][evolve_section_2:#evolve_4#][evolve_section_3:#evolve_4#]","[measures:5]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20#}\n[evolve_section_1:#evolve_5#][note_offset:#key_change#][evolve_section_2:#evolve_5#][evolve_section_3:#evolve_5#]","[measures:6]\n{ #[repeat:#set_repeat#]repeat# CNT\n#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20# #[note21:#note#]note21# #[note22:#note#]note22# #[note23:#note#]note23# #[note24:#note#]note24#}\n[evolve_section_1:#evolve_6#][note_offset:#key_change#][evolve_section_2:#evolve_6#][evolve_section_3:#evolve_6#]"
+    "[measures:3]#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12#[evolve_section_1:#evolve_3#][note_offset:#key_change#][evolve_section_2:#evolve_3#][evolve_section_3:#evolve_3#]","[measures:4]#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16#[evolve_section_1:#evolve_4#][note_offset:#key_change#][evolve_section_2:#evolve_4#][evolve_section_3:#evolve_4#]","[measures:5]#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20#[evolve_section_1:#evolve_5#][note_offset:#key_change#][evolve_section_2:#evolve_5#][evolve_section_3:#evolve_5#]","[measures:6]#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20# #[note21:#note#]note21# #[note22:#note#]note22# #[note23:#note#]note23# #[note24:#note#]note24#[evolve_section_1:#evolve_6#][note_offset:#key_change#][evolve_section_2:#evolve_6#][evolve_section_3:#evolve_6#]"
   ],
 
   "set_repeat": [
@@ -250,7 +256,7 @@ rules = {
   ],
 
   "dur": [
-    "0.25","0.5","0.25","0.5","0.25","0.5","0.75","1","1.25","1.5","2.75","3"
+    "0.25","0.25","0.25","0.5","0.5","0.5","1","1","1","1.25","1.5","1.75","2","2.5","3"
   ],
 
   "set_on_off": [
@@ -259,6 +265,10 @@ rules = {
 
   "amp": [
     "0.2","0.25","0.3","0.35","0.4","0.45","0.5","0.55","0.6","0.65","0.7","0.75","0.8","0.85","0.9","0.95"
+  ],
+
+  "end_piece": [
+    "i -1000 0 0"
   ]
 
 }
@@ -291,6 +301,7 @@ csd = '''
 sr = 44100
 ksmps = 10
 0dbfs = 1
+nchnls = 2
 
 instr 100 ;STRING PLUCK
     p3=p4
@@ -303,26 +314,30 @@ instr 100 ;STRING PLUCK
     aSig	wgpluck2  0.58, p5, cpspch(p6), iPlk, irefl	; generate Karplus-Strong plucked string audio
     kcf	expon	cpsoct(rnd(6)+6),p3,50				; filter cutoff frequency envelope
     aSig	clfilt	aSig, kcf, 0, 2					; butterworth lowpass filter
-    out aSig*aEnv*1.5
+    chnmix aSig*aEnv*1.5, "mixl"
+	chnmix aSig*aEnv*1.5, "mixr"
 endin
 
 instr 101 ;ORGAN
-  ifrq = cpspch(p6)
-  kenv madsr 0.001,0.5,0.7,0.2
-  a1     oscili 8/43,   1      * ifrq
-  a2     oscili 8/43,   2      * ifrq
-  a3     oscili 8/43,   2.9966 * ifrq
-  a4     oscili 8/43,   4      * ifrq
-  a5     oscili 3/43,   5.9932 * ifrq
-  a6     oscili 2/43,   8      * ifrq
-  a7     oscili 1/43,  10.0794 * ifrq
-  a8     oscili 1/43,  11.9864 * ifrq
-  a9     oscili 4/43,  16      * ifrq
-  aorgan = kenv*p5*0.7*(a1+a2+a3+a4+a5+a6+a7+a8+a9)
-  out aorgan
+    p3=p4
+    ifrq = cpspch(p6)
+    kenv madsr 0.001,0.5,0.7,0.2
+    a1     oscili 8/43,   1      * ifrq
+    a2     oscili 8/43,   2      * ifrq
+    a3     oscili 8/43,   2.9966 * ifrq
+    a4     oscili 8/43,   4      * ifrq
+    a5     oscili 3/43,   5.9932 * ifrq
+    a6     oscili 2/43,   8      * ifrq
+    a7     oscili 1/43,  10.0794 * ifrq
+    a8     oscili 1/43,  11.9864 * ifrq
+    a9     oscili 4/43,  16      * ifrq
+    asig = kenv*p5*0.7*(a1+a2+a3+a4+a5+a6+a7+a8+a9)
+    chnmix asig, "mixl"
+    chnmix asig, "mixr"
 endin
 
 instr 102; Bell
+    p3=p4
     kamp = p5*.3
     kfreq = cpspch(p6)
     kc1 = 10
@@ -331,7 +346,22 @@ instr 102; Bell
     kvrate = 5
 
     asig fmbell kamp, kfreq, kc1, kc2, kvdepth, kvrate, -1, -1, -1, -1, -1, 3
-         out asig
+    chnmix asig, "mixl"
+	chnmix asig, "mixr"
+endin
+
+instr 103 ;FLUTE
+    p3=p4
+    kfreq = cpspch(p6)
+    kc1 = 5
+    kvdepth = .01
+    kvrate = 6
+
+    kenv expseg 0.001,0.1,p5,p3-0.2,p5,0.1,0.001
+    kc2  line 5, p3, p6
+    asig fmpercfl kenv, kfreq, kc1, kc2, kvdepth, kvrate
+    chnmix asig, "mixl"
+	chnmix asig, "mixr"
 endin
 
 instr 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52
@@ -342,7 +372,17 @@ instr 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28
 	elseif ftchnls(p1) == 2 then
 	    asigl, asigr loscil p5, 1, p1, 1, 0
 	endif
-	out asigl
+	chnmix asigl, "mixl"
+	chnmix asigr, "mixr"
+endin
+
+instr 1000 ; mixer
+    asigl chnget "mixl"
+    asigr chnget "mixr"
+    asigl,asigr reverbsc asigl,asigr,0.6,7000
+    outs asigl*3,asigr*3
+    chnclear "mixl"
+    chnclear "mixr"
 endin
 
 </CsInstruments>
@@ -399,6 +439,8 @@ f 49 0 0 1 "drums/oberheim/oberheim_tamborine.wav" 0 0 0
 f 50 0 0 1 "drums/oberheim/oberheim_tom1.wav" 0 0 0
 f 51 0 0 1 "drums/oberheim/oberheim_tom2.wav" 0 0 0
 f 52 0 0 1 "drums/oberheim/oberheim_tom3.wav" 0 0 0
+
+i 1000 0 -1
 '''
 csd = csd + output + '''
 
