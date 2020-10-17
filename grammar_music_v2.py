@@ -24,7 +24,7 @@ rules = {
   ],
 
   "score": [
-    "[#set_mode#][note_offset_1:#set_note_offset#][key_change:#note_offset_1#+0.07][note_offset:#key_change#][#set_theme#][#set_drums#][#set_voices#]; #mode# #drums# voices=#voices# key1=#note_offset_1# key2=#key_change#\nt 0 [tempo:#set_tempo#]#tempo# 312 #tempo# 372 $BO#tempo#/4$BC 432 $BO#tempo#/2$BC 492 #tempo#\n#voices_template#\ns\n#end_piece#"
+    "[#set_mode#][note_offset_1:#set_note_offset#][key_change:#note_offset_1#+0.07][note_offset:#key_change#][#set_theme#][#set_drums#][#set_voices#]; #mode# #drums# voices=#voices# key1=#note_offset_1# key2=#key_change#\nt 0 [tempo:#set_tempo#]#tempo# ;426 #tempo# 486 $BO#tempo#/4$BC 566 $BO#tempo#/4$BC 626 $BO#tempo#/4$BC\n#voices_template#\ns\n#end_piece#"
   ],
 
   "set_mode": [
@@ -76,7 +76,7 @@ rules = {
   ],
 
   "voice_constructor": [
-    "[note_offset:#note_offset_1#][loop1:#set_measures#][repeat:#set_repeat#]b $BO#max_loop_length#-#measures#*4*#repeat#$BC ; loop1 #mode#\n{ #repeat# CNT\n#loop1#}\n\n; evolve 1 #mode#\n#evolve_section_1#\n[#mode1#]; evovle 2, #mode#\n#evolve_section_2#\n[#mode1#]; evovle 3, #mode#\n#evolve_section_3#\n#silence#\n#evolve_theme_section_1#\n#evolve_theme_section_2#\n"
+    "[note_offset:#note_offset_1#][loop1:#set_measures#][repeat:#set_repeat#]b $BO#max_loop_length#-#measures#*4*#repeat#$BC\n; SECTION 1: LOOP1 #mode#\n{ #repeat# CNT\n#loop1#}\n\n; SECTION 2: EVOLVE 1 #mode#\n#evolve_section_1#\n[#mode1#]; SECTION 3: EVOLVE 2, #mode#\n#evolve_section_2#\n[#mode1#]; SECTION 4: EVOLVE 3, #mode#\n#evolve_section_3#\n; SECTION 5: SILENCE\n#silence#\n; SECTION 6: EVOLVE THEME 1\n#evolve_theme_section_1#\n; SECTION 7: EVOLVE THEME 2\n#evolve_theme_section_2#\n"
   ],
 
   "silence": [
@@ -376,7 +376,7 @@ rules = {
   ],
 
   "evolve_theme_note_constructor": [
-    "i #inst# + 1 #theme_note_dur# $BO#amp#*#theme_note_on_off#/#voices#$BC $BO#inst_register#+#theme_note_value# #note_offset#$BC\n"
+    "i #inst# + 1 #theme_note_dur# $BO#amp#*#theme_note_on_off#/#voices#$BC $BO#inst_register#+#theme_note_value# #note_offset#$BC ;theme\n"
   ],
 
   "measure_1": [
@@ -537,7 +537,6 @@ instr 105 ; RHODES
     ifn4 = 53
     ivfn = -1
     kenv expseg 0.001,0.01,p5,p3-0.02,p5,0.01,0.001
-
     asig fmrhode kenv, kfreq, kc1, kc2, kvdepth, kvrate, ifn1, ifn2, ifn3, ifn4, ivfn
     chnmix asig, "mixl"
 	chnmix asig, "mixr"
@@ -553,7 +552,7 @@ instr 106 ; MARIMBA
     ivibfn = 2
     idec = 0.6
 
-    asig marimba p5*6, ifreq, ihrd, ipos, imp, kvibf, kvamp, ivibfn, idec, 0, 0
+    asig marimba p5*8, ifreq, ihrd, ipos, imp, kvibf, kvamp, ivibfn, idec, 0, 0
 
     chnmix asig, "mixl"
     chnmix asig, "mixr"
@@ -575,7 +574,7 @@ endin
 instr 1000 ; mixer
     asigl chnget "mixl"
     asigr chnget "mixr"
-    asigl,asigr freeverb asigl,asigr,0.5,0
+    asigl,asigr freeverb asigl,asigr,0.3,0
     outs asigl*3,asigr*3
     chnclear "mixl"
     chnclear "mixr"
