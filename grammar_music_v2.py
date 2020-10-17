@@ -8,14 +8,14 @@ from datetime import datetime
 # Rules for melody selection that emphasize smaller steps and the fundamental
 # Allow individual notes to be offset by 0,0.25,0.5,0.75 instead of the whole line
 # 3/4 time
-# Save sections and return to them
-# Let sections mutate with new note values
 # Suggest some starting rhythmic templates
 # Add instruments - bass, organ, sax, synth, clavinet, rhodes, chimes
-# Separate instruments into parts - rhythm, melody, bass
 # Adjust instrument levels to mix better
 # Add effects channels randomly selected (e.g. reverb, delay, filter)
 # Add breathing spaces between parts (i.e. Eli Keszler)
+# Randomize the tempo slow down point
+# Add simple panning of parts
+# Slow organ drones
 
 rules = {
 
@@ -24,7 +24,7 @@ rules = {
   ],
 
   "score": [
-    "[#set_mode#][note_offset_1:#set_note_offset#][key_change:#note_offset_1#+0.07][#set_drums#][#set_voices#]; #mode# #drums# voices=#voices# key1=#note_offset_1# key2=#key_change#\nt 0 [tempo:#set_tempo#]#tempo#\n#voices_template#\ns\n#end_piece#"
+    "[#set_mode#][note_offset_1:#set_note_offset#][key_change:#note_offset_1#+0.07][#set_drums#][#set_voices#]; #mode# #drums# voices=#voices# key1=#note_offset_1# key2=#key_change#\nt 0 [tempo:#set_tempo#]#tempo# 312 #tempo# 372 $BO#tempo#/4$BC\n#voices_template#\ns\n#end_piece#"
   ],
 
   "set_mode": [
@@ -32,11 +32,11 @@ rules = {
   ],
 
   "set_note_offset": [
-    "-1","-0.99","-0.98","-0.97","-0.96","-0.95","-0.94","-0.93","-0.92","-0.91","-0.9","-0.89","+0.12","+0.11","+0.10","+0.9","+0.08","+0.07","+0.06","+0.05","+0.04","+0.03","+0.02","+0.01","+0"
+    "-0.92","-0.91","-0.9","-0.89","+0.06","+0.05","+0.04","+0.03","+0.02","+0.01","+0"
   ],
 
   "set_voices": [
-    "[voices:7][voices_template:#7_voices#]"
+    "[voices:8][voices_template:#8_voices#]"
   ],
 
   "set_tempo": [
@@ -71,8 +71,8 @@ rules = {
     "#voice_constructor#\n#voice_constructor#\n#voice_constructor#\n#voice_constructor#\n#voice_constructor#\n#voice_constructor#\n",
   ],
 
-  "7_voices": [
-    "[inst:#drum_parts#][inst_register:#register#]#voice_constructor#\n[inst:#drum_parts#][inst_register:#register#]#voice_constructor#\n[inst:#drum_parts#][inst_register:#register#]#voice_constructor#\n[inst:#drum_parts#][inst_register:#register#]#voice_constructor#\n[inst:#melody_parts#][inst_register:#register#]#voice_constructor#\n[inst:#melody_parts#][inst_register:#register#]#voice_constructor#\n[inst:#melody_parts#][inst_register:#register#]#voice_constructor#\n",
+  "8_voices": [
+    "[inst:#drum_parts#][inst_register:#register#]#voice_constructor#\n[inst:#drum_parts#][inst_register:#register#]#voice_constructor#\n[inst:#drum_parts#][inst_register:#register#]#voice_constructor#\n[inst:#drum_parts#][inst_register:#register#]#voice_constructor#\n[inst:#melody_parts#][inst_register:#register#]#voice_constructor#\n[inst:#melody_parts#][inst_register:#register#]#voice_constructor#\n[inst:#melody_parts#][inst_register:#register#]#voice_constructor#\n[inst:#bass_parts#][inst_register:#register#]#voice_constructor#\n"
   ],
 
   "voice_constructor": [
@@ -81,26 +81,14 @@ rules = {
 
   "set_drums": [
      "[drums:tr808][drum_parts:1,2,3,4,5,6,7,8,9,10,11][register:8]","[drums:emu][drum_parts:12,13,14,15,16,17,18,19,20,21,22,23][register:8]","[drums:linn][drum_parts:24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40][register:8]","[drums:oberheim][drum_parts:41,42,43,44,45,46,47,48,49][register:8]"
-   ],
+  ],
 
   "melody_parts": [
-    "#100#","#101#","#102#","#103#"
+    "[name:string_pluck][register:7,8,9]100","[name:organ][register:7,8,9]101","[name:flute][register:8,9]103","[name:rhodes][register:7,8,9]105","[name:marimba][register:7,8,9,10,11]106"
   ],
 
-  "100": [
-    "[name:string_pluck][register:6,7,8,9]100"
-  ],
-
-  "101": [
-    "[name:organ][register:6,7,8,9]101"
-  ],
-
-  "102": [
-    "[name:chime][register:9,10,11]102"
-  ],
-
-  "103": [
-    "[name:flute][register:8,9]103"
+  "bass_parts": [
+    "[name:string_pluck][register:6]100","[name:organ][register:5,6]101"
   ],
 
   "set_measures": [
@@ -256,7 +244,7 @@ rules = {
   ],
 
   "dur": [
-    "0.25","0.25","0.25","0.5","0.5","0.5","1","1","1","1.25","1.5","1.75","2","2.5","3"
+    "0.25","0.25","0.25","0.25","0.25","0.5","0.5","0.5","0.75","0.75","1"
   ],
 
   "set_on_off": [
@@ -268,7 +256,7 @@ rules = {
   ],
 
   "end_piece": [
-    "i -1000 0 0"
+    "i 1 0 5 0 0 0\ni -1000 5 0"
   ]
 
 }
@@ -303,7 +291,7 @@ ksmps = 10
 0dbfs = 1
 nchnls = 2
 
-instr 100 ;STRING PLUCK
+instr 100 ; STRING PLUCK
     p3=p4
     seed 0
     irefl	random 0.001, 0.999
@@ -318,7 +306,7 @@ instr 100 ;STRING PLUCK
 	chnmix aSig*aEnv*1.5, "mixr"
 endin
 
-instr 101 ;ORGAN
+instr 101 ; ORGAN
     p3=p4
     ifrq = cpspch(p6)
     kenv madsr 0.001,0.5,0.7,0.2
@@ -336,21 +324,22 @@ instr 101 ;ORGAN
     chnmix asig, "mixr"
 endin
 
-instr 102; Bell
+instr 102 ; CHIMES
     p3=p4
-    kamp = p5*.3
+    iamp = p5*.3
     kfreq = cpspch(p6)
     kc1 = 10
     kc2 = 5
     kvdepth = 0.1
     kvrate = 5
 
-    asig fmbell kamp, kfreq, kc1, kc2, kvdepth, kvrate, -1, -1, -1, -1, -1, 3
+    kenv linseg 0,0.1,iamp,p3-0.2,iamp,0.1,0
+    asig fmbell kenv, kfreq, kc1, kc2, kvdepth, kvrate, -1, -1, -1, -1, -1, 3
     chnmix asig, "mixl"
 	chnmix asig, "mixr"
 endin
 
-instr 103 ;FLUTE
+instr 103 ; FLUTE
     p3=p4
     kfreq = cpspch(p6)
     kc1 = 5
@@ -364,7 +353,57 @@ instr 103 ;FLUTE
 	chnmix asig, "mixr"
 endin
 
-instr 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52
+instr 104 ; VOICE
+    p3 = p4
+    kfreq cpspch p6
+    kvowel = int(random(0,12))	; p4 = vowel (0 - 64)
+    ktilt  = 99
+    kvibamt = 0.01
+    kvibrate = 5
+
+    kenv adsr 0.01,0.1,0.8,0.1
+    asig fmvoice p5*kenv, kfreq, kvowel, ktilt, kvibamt, kvibrate
+    chnmix asig, "mixl"
+	chnmix asig, "mixr"
+endin
+
+instr 105 ; RHODES
+    seed 0
+    p3=p4
+    kfreq = cpspch(p6)
+    kc1 = int(random(6,30))
+    kc2 = 0
+    kvdepth = 0.4
+    kvrate = 3
+    ifn1 = -1
+    ifn2 = -1
+    ifn3 = -1
+    ifn4 = 53
+    ivfn = -1
+    kenv expseg 0.001,0.01,p5,p3-0.02,p5,0.01,0.001
+
+    asig fmrhode kenv, kfreq, kc1, kc2, kvdepth, kvrate, ifn1, ifn2, ifn3, ifn4, ivfn
+    chnmix asig, "mixl"
+	chnmix asig, "mixr"
+endin
+
+instr 106 ; MARIMBA
+    ifreq = cpspch(p6)
+    ihrd = 0.1
+    ipos = 0.561
+    imp = 54
+    kvibf = 6.0
+    kvamp = 0.05
+    ivibfn = 2
+    idec = 0.6
+
+    asig marimba p5*5, ifreq, ihrd, ipos, imp, kvibf, kvamp, ivibfn, idec, 0, 0
+
+    chnmix asig, "mixl"
+    chnmix asig, "mixr"
+endin
+
+instr 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52 ; DRUMS
     p3=4
 	if ftchnls(p1) == 1 then
 		asigl loscil p5, 1, p1, 1, 0
@@ -376,10 +415,11 @@ instr 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28
 	chnmix asigr, "mixr"
 endin
 
+
 instr 1000 ; mixer
     asigl chnget "mixl"
     asigr chnget "mixr"
-    asigl,asigr reverbsc asigl,asigr,0.6,7000
+    asigl,asigr freeverb asigl,asigr,0.5,0
     outs asigl*3,asigr*3
     chnclear "mixl"
     chnclear "mixr"
@@ -439,7 +479,8 @@ f 49 0 0 1 "drums/oberheim/oberheim_tamborine.wav" 0 0 0
 f 50 0 0 1 "drums/oberheim/oberheim_tom1.wav" 0 0 0
 f 51 0 0 1 "drums/oberheim/oberheim_tom2.wav" 0 0 0
 f 52 0 0 1 "drums/oberheim/oberheim_tom3.wav" 0 0 0
-
+f 53 0 256 1 "fwavblnk.aiff" 0 0 0
+f 54 0 256 1 "marmstk1.wav" 0 0 0
 i 1000 0 -1
 '''
 csd = csd + output + '''

@@ -14,7 +14,7 @@ instr 1
 
     seed 0
     irefl	random 0.001, 0.999
-    aEnv	linsegr	0, 0.005, 1, p3-0.105, 1, 0.1, 0		; amplitude envelope
+    aEnv	linsegr	0, 0.005, p4, p3-0.105, p4, 0.1, 0		; amplitude envelope
     iPlk	random	0.1, 0.3					; point at which to pluck the string
     iDtn	random    -0.05, 0.05					; random detune
     ;irefl	table	inum, giScal1					; read reflection value from giScal table according to note number
@@ -107,17 +107,69 @@ asig fmpercfl p4*kenv, kfreq, kc1, kc2, kvdepth, kvrate
      outs asig, asig
 endin
 
+instr 8 ;VOICE
 
+kfreq cpspch p5
+printk2 kfreq
+kvowel = p6	; p4 = vowel (0 - 64)
+ktilt  = p7
+kvibamt = 0.01
+kvibrate = 20
+
+kenv adsr 0.01,0.1,0.8,0.1
+asig fmvoice p4*kenv, kfreq, kvowel, ktilt, kvibamt, kvibrate
+outs asig, asig
+
+endin
+
+instr 9 ;Rhodes
+seed 0
+kfreq = cpspch(p6)
+
+kc1 = int(random(6,30))
+printk2 kc1
+kc2 = p5
+kvdepth = 0.4
+kvrate = 3
+ifn1 = -1
+ifn2 = -1
+ifn3 = -1
+ifn4 = 2
+ivfn = -1
+kenv expseg 0.001,0.01,0.5,p3-0.02,0.5,0.01,0.001
+
+asig fmrhode kenv, kfreq, kc1, kc2, kvdepth, kvrate, ifn1, ifn2, ifn3, ifn4, ivfn
+     outs asig, asig
+
+endin
+
+instr 10 ;MARIMBA
+  ifreq = cpspch(p5)
+  ihrd = 0.1
+  ipos = 0.561
+  imp = 3
+  kvibf = 6.0
+  kvamp = 0.05
+  ivibfn = 2
+  idec = 0.6
+
+  a1 marimba p4, ifreq, ihrd, ipos, imp, kvibf, kvamp, ivibfn, idec, 20, 10
+
+  outs a1, a1
+endin
 </CsInstruments>
 <CsScore>
-;i3 0 1 0.8 10.00
+f 2 0 256 1 "fwavblnk.aiff" 0 0 0
+f 3 0 256 1 "marmstk1.wav" 0 0 0
+;i1 0 3 0.4 5.00
+;i3 0 3 0.4 6.00
 ;i3 + . . [10.00+0.07]
 ;i4 0 3 0.3 6.00 5 5 0.1
 ;i5 0 1 0.2 10.00 10 5
-;i6 0 3 1 0.6 6.00
-i7 0 1 0.5 10.00 1
-i7 + . 0.5 10.02 1
-i7 + . 0.5 10.04 1
-i7 + . 0.5 10.05 1
+i6 0 3 10 0.6 6.00
+;i7 0 1 0.5 10.00 1
+;i8 0 1 0.5 5.06 1 99
+;i 9 0 2 20 0 10.00
+;i 10 0 10 0.4 11.00
 </CsScore>
 </CsoundSynthesizer>
