@@ -24,7 +24,7 @@ rules = {
   ],
 
   "score": [
-    "[#set_mode#][note_offset_1:#set_note_offset#][key_change:#note_offset_1#+0.07][#set_drums#][#set_voices#]; #mode# #drums# voices=#voices# key1=#note_offset_1# key2=#key_change#\nt 0 [tempo:#set_tempo#]#tempo# 312 #tempo# 372 $BO#tempo#/4$BC\n#voices_template#\ns\n#end_piece#"
+    "[#set_mode#][note_offset_1:#set_note_offset#][key_change:#note_offset_1#+0.07][note_offset:#key_change#][#set_theme#][#set_drums#][#set_voices#]; #mode# #drums# voices=#voices# key1=#note_offset_1# key2=#key_change#\nt 0 [tempo:#set_tempo#]#tempo# 312 #tempo# 372 $BO#tempo#/4$BC\n#voices_template#\ns\n#end_piece#"
   ],
 
   "set_mode": [
@@ -76,7 +76,15 @@ rules = {
   ],
 
   "voice_constructor": [
-    "[note_offset:#note_offset_1#][loop1:#set_measures#][repeat:#set_repeat#]b $BO#max_loop_length#-#measures#*4*#repeat#$BC ; loop1 #mode#\n{ #repeat# CNT\n#loop1#}\n\n; evolve 1 #mode#\n#evolve_section_1#\n[#mode1#]; evovle 2, #mode#\n#evolve_section_2#\n[#mode1#]; evovle 3, #mode#\n#evolve_section_3#\n"
+    "[note_offset:#note_offset_1#][loop1:#set_measures#][repeat:#set_repeat#]b $BO#max_loop_length#-#measures#*4*#repeat#$BC ; loop1 #mode#\n{ #repeat# CNT\n#loop1#}\n\n; evolve 1 #mode#\n#evolve_section_1#\n[#mode1#]; evovle 2, #mode#\n#evolve_section_2#\n[#mode1#]; evovle 3, #mode#\n#evolve_section_3#\n#silence#\n#evolve_theme_section_1#\n"
+  ],
+
+  "silence": [
+    "#silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note#"
+  ],
+
+  "silent_note": [
+    "i #inst# + 1 1 0 8.00\n"
   ],
 
   "set_drums": [
@@ -91,8 +99,20 @@ rules = {
     "[name:string_pluck][register:6]100","[name:organ][register:5,6]101"
   ],
 
+  "set_theme": [
+    "[theme_part1:#set_theme_part1#][theme_part2:#set_theme_part2#]"
+  ],
+
+  "set_theme_part1": [
+    "[theme_note1:#note#]\n[theme_note2:#note#]\n[theme_note3:#note#]\n[theme_note4:#note#]\n[theme_note5:#note#]\n[theme_note6:#note#]\n[theme_note7:#note#]\n[theme_note8:#note#]\n[theme_note9:#note#]\n[theme_note10:#note#]\n[theme_note11:#note#]\n[theme_note12:#note#]\n"
+  ],
+
+  "set_theme_part2": [
+    "[theme_note13:#note#]\n[theme_note14:#note#]\n[theme_note15:#note#]\n[theme_note16:#note#]\n[theme_note17:#note#]\n[theme_note18:#note#]\n[theme_note19:#note#]\n[theme_note20:#note#]\n[theme_note21:#note#]\n[theme_note22:#note#]\n[theme_note23:#note#]\n[theme_note24:#note#]\n"
+  ],
+
   "set_measures": [
-    "[measures:3]#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12#[evolve_section_1:#evolve_3#][note_offset:#key_change#][evolve_section_2:#evolve_3#][evolve_section_3:#evolve_3#]","[measures:4]#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16#[evolve_section_1:#evolve_4#][note_offset:#key_change#][evolve_section_2:#evolve_4#][evolve_section_3:#evolve_4#]","[measures:5]#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20#[evolve_section_1:#evolve_5#][note_offset:#key_change#][evolve_section_2:#evolve_5#][evolve_section_3:#evolve_5#]","[measures:6]#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20# #[note21:#note#]note21# #[note22:#note#]note22# #[note23:#note#]note23# #[note24:#note#]note24#[evolve_section_1:#evolve_6#][note_offset:#key_change#][evolve_section_2:#evolve_6#][evolve_section_3:#evolve_6#]"
+    "[measures:3]#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12#[evolve_section_1:#evolve_3#][note_offset:#key_change#][evolve_section_2:#evolve_3#][evolve_section_3:#evolve_3#][evolve_theme_section_1:#evolve_theme_3#]","[measures:4]#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16#[evolve_section_1:#evolve_4#][note_offset:#key_change#][evolve_section_2:#evolve_4#][evolve_section_3:#evolve_4#][evolve_theme_section_1:#evolve_theme_3#]","[measures:5]#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20#[evolve_section_1:#evolve_5#][note_offset:#key_change#][evolve_section_2:#evolve_5#][evolve_section_3:#evolve_5#][evolve_theme_section_1:#evolve_theme_3#]","[measures:6]#[note1:#note_1#][note1_evolve:#note#]note1# #[note2:#note#]note2# #[note3:#note#]note3# #[note4:#note#]note4# #[note5:#note#]note5# #[note6:#note#]note6# #[note7:#note#]note7# #[note8:#note#]note8# #[note9:#note#]note9# #[note10:#note#]note10# #[note11:#note#]note11# #[note12:#note#]note12# #[note13:#note#]note13# #[note14:#note#]note14# #[note15:#note#]note15# #[note16:#note#]note16# #[note17:#note#]note17# #[note18:#note#]note18# #[note19:#note#]note19# #[note20:#note#]note20# #[note21:#note#]note21# #[note22:#note#]note22# #[note23:#note#]note23# #[note24:#note#]note24#[evolve_section_1:#evolve_6#][note_offset:#key_change#][evolve_section_2:#evolve_6#][evolve_section_3:#evolve_6#][evolve_theme_section_1:#evolve_theme_3#]"
   ],
 
   "set_repeat": [
@@ -168,7 +188,7 @@ rules = {
   ],
 
   "evolve_note10": [
-    "#note10#","#note10#","#[note10:#note#]note10#"
+    "#note10#","#note10#","#note10#","#note10#","#[note10:#note#]note10#"
   ],
 
   "evolve_note11": [
@@ -225,6 +245,134 @@ rules = {
 
   "evolve_note24": [
     "#note24#","#note24#","#note24#","#note24#","#[note24:#note#]note24#"
+  ],
+
+  "evolve_theme_3": [
+    "#evolve_theme_3_template# #evolve_theme_3_template# #evolve_theme_3_template# #evolve_theme_3_template# #evolve_theme_3_template# #evolve_theme_3_template# #evolve_theme_3_template# #evolve_theme_3_template#"
+  ],
+
+  "evolve_theme_3_template": [
+    "#evolve_theme_note1# #evolve_theme_note2# #evolve_theme_note3# #evolve_theme_note4# #evolve_theme_note5# #evolve_theme_note6# #evolve_theme_note7# #evolve_theme_note8# #evolve_theme_note9# #evolve_theme_note10# #evolve_theme_note11# #evolve_theme_note12#"
+  ],
+
+  "evolve_theme_4": [
+    "#evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template#","#evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template#","#evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template#","#evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template# #evolve_theme_4_template#"
+  ],
+
+  "evolve_theme_4_template": [
+    "#evolve_theme_note1# #evolve_theme_note2# #evolve_theme_note3# #evolve_theme_note4# #evolve_theme_note5# #evolve_theme_note6# #evolve_theme_note7# #evolve_theme_note8# #evolve_theme_note9# #evolve_theme_note10# #evolve_theme_note11# #evolve_theme_note12# #evolve_theme_note13# #evolve_theme_note14# #evolve_theme_note15# #evolve_theme_note16#"
+  ],
+
+  "evolve_theme_5": [
+    "#evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template#","#evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template#","#evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template#","#evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template# #evolve_theme_5_template#"
+  ],
+
+  "evolve_theme_5_template": [
+    "#evolve_theme_note1# #evolve_theme_note2# #evolve_theme_note3# #evolve_theme_note4# #evolve_theme_note5# #evolve_theme_note6# #evolve_theme_note7# #evolve_theme_note8# #evolve_theme_note9# #evolve_theme_note10# #evolve_theme_note11# #evolve_theme_note12# #evolve_theme_note13# #evolve_theme_note14# #evolve_theme_note15# #evolve_theme_note16# #evolve_theme_note17# #evolve_theme_note18# #evolve_theme_note19# #evolve_theme_note20#"
+  ],
+
+  "evolve_theme_6": [
+    "#evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template#","#evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template#","#evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template#","#evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template# #evolve_theme_6_template#"
+  ],
+
+  "evolve_theme_6_template": [
+    "#evolve_theme_note1# #evolve_theme_note2# #evolve_theme_note3# #evolve_theme_note4# #evolve_theme_note5# #evolve_theme_note6# #evolve_theme_note7# #evolve_theme_note8# #evolve_theme_note9# #evolve_theme_note10# #evolve_theme_note11# #evolve_theme_note12# #evolve_theme_note13# #evolve_theme_note14# #evolve_theme_note15# #evolve_theme_note16# #evolve_theme_note17# #evolve_theme_note18# #evolve_theme_note19# #evolve_theme_note20# #evolve_theme_note21# #evolve_theme_note22# #evolve_theme_note23# #evolve_theme_note24#"
+  ],
+
+  "evolve_theme_note1": [
+    "#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#[note1_evolve:#theme_note1#]note1_evolve#"
+  ],
+
+  "evolve_theme_note2": [
+    "#note2#","#note2#","#note2#","#note2#","#[note2:#theme_note2#]note2#"
+  ],
+
+  "evolve_theme_note3": [
+    "#note3#","#note3#","#note3#","#note3#","#[note3:#theme_note3#]note3#"
+  ],
+
+  "evolve_theme_note4": [
+    "#note4#","#note4#","#note4#","#note4#","#[note4:#theme_note4#]note4#"
+  ],
+
+  "evolve_theme_note5": [
+    "#note5#","#note5#","#note5#","#note5#","#[note5:#theme_note5#]note5#"
+  ],
+
+  "evolve_theme_note6": [
+    "#note6#","#note6#","#note6#","#note6#","#[note6:#theme_note6#]note6#"
+  ],
+
+  "evolve_theme_note7": [
+    "#note7#","#note7#","#note7#","#note7#","#[note7:#theme_note7#]note7#"
+  ],
+
+  "evolve_theme_note8": [
+    "#note8#","#note8#","#note8#","#note8#","#[note8:#theme_note8#]note8#"
+  ],
+
+  "evolve_theme_note9": [
+    "#note9#","#note9#","#note9#","#note9#","#[note9:#theme_note9#]note9#"
+  ],
+
+  "evolve_theme_note10": [
+    "#note10#","#note10#","#note10#","#note10#","#[note10:#theme_note10#]note10#"
+  ],
+
+  "evolve_theme_note11": [
+    "#note11#","#note11#","#note11#","#note11#","#[note11:#theme_note11#]note11#"
+  ],
+
+  "evolve_theme_note12": [
+    "#note12#","#note12#","#note12#","#note12#","#[note12:#theme_note12#]note12#"
+  ],
+
+  "evolve_theme_note13": [
+    "#note13#","#note13#","#note13#","#note13#","#[note13:#theme_note13#]note13#"
+  ],
+
+  "evolve_theme_note14": [
+    "#note14#","#note14#","#note14#","#note14#","#[note14:#theme_note14#]note14#"
+  ],
+
+  "evolve_theme_note15": [
+    "#note15#","#note15#","#note15#","#note15#","#[note15:#theme_note15#]note15#"
+  ],
+
+  "evolve_theme_note16": [
+    "#note16#","#note16#","#note16#","#note16#","#[note16:#theme_note16#]note16#"
+  ],
+
+  "evolve_theme_note17": [
+    "#note17#","#note17#","#note17#","#note17#","#[note17:#theme_note17#]note17#"
+  ],
+
+  "evolve_theme_note18": [
+    "#note18#","#note18#","#note18#","#note18#","#[note18:#theme_note18#]note18#"
+  ],
+
+  "evolve_theme_note19": [
+    "#note19#","#note19#","#note19#","#note19#","#[note19:#theme_note19#]note19#"
+  ],
+
+  "evolve_theme_note20": [
+    "#note20#","#note20#","#note20#","#note20#","#[note20:#theme_note20#]note20#"
+  ],
+
+  "evolve_theme_note21": [
+    "#note21#","#note21#","#note21#","#note21#","#[note21:#theme_note21#]note21#"
+  ],
+
+  "evolve_theme_note22": [
+    "#note22#","#note22#","#note22#","#note22#","#[note22:#theme_note22#]note22#"
+  ],
+
+  "evolve_theme_note23": [
+    "#note23#","#note23#","#note23#","#note23#","#[note23:#theme_note23#]note23#"
+  ],
+
+  "evolve_theme_note24": [
+    "#note24#","#note24#","#note24#","#note24#","#[note24:#theme_note24#]note24#"
   ],
 
   "measure_1": [
@@ -319,7 +467,7 @@ instr 101 ; ORGAN
     a7     oscili 1/43,  10.0794 * ifrq
     a8     oscili 1/43,  11.9864 * ifrq
     a9     oscili 4/43,  16      * ifrq
-    asig = kenv*p5*0.7*(a1+a2+a3+a4+a5+a6+a7+a8+a9)
+    asig = kenv*p5*0.5*(a1+a2+a3+a4+a5+a6+a7+a8+a9)
     chnmix asig, "mixl"
     chnmix asig, "mixr"
 endin
@@ -397,7 +545,7 @@ instr 106 ; MARIMBA
     ivibfn = 2
     idec = 0.6
 
-    asig marimba p5*5, ifreq, ihrd, ipos, imp, kvibf, kvamp, ivibfn, idec, 0, 0
+    asig marimba p5*6, ifreq, ihrd, ipos, imp, kvibf, kvamp, ivibfn, idec, 0, 0
 
     chnmix asig, "mixl"
     chnmix asig, "mixr"
