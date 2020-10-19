@@ -44,7 +44,7 @@ rules = {
   ],
 
   "max_loop_length": [
-    "(6*4*8*1)"
+    "(6*4*10*1)"
   ],
 
   "1_voices": [
@@ -84,11 +84,11 @@ rules = {
   ],
 
   "silence_356": [
-    "#silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note#"
+    "#silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note#"
   ],
 
   "silence_4": [
-    "#silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note#"
+    "#silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note#"
   ],
 
   "silent_note": [
@@ -128,7 +128,7 @@ rules = {
   ],
 
   "set_repeat": [
-    "5","6","7","8"
+    "7","8","9","10"
   ],
 
   "evolve_3": [
@@ -140,7 +140,7 @@ rules = {
   ],
 
   "evolve_4": [
-    "#evolve_4_template# #evolve_4_template# #evolve_4_template# #evolve_4_template# #evolve_4_template# #evolve_4_template# #evolve_4_template# #evolve_4_template#"
+    "#evolve_4_template# #evolve_4_template# #evolve_4_template# #evolve_4_template# #evolve_4_template# #evolve_4_template# #evolve_4_template#"
   ],
 
   "evolve_4_template": [
