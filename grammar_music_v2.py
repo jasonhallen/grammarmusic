@@ -5,17 +5,16 @@ from random import choice
 from datetime import datetime
 
 # TASKS
-# Rules for melody selection that emphasize smaller steps and the fundamental
-# Allow individual notes to be offset by 0,0.25,0.5,0.75 instead of the whole line
 # 3/4 time
 # Suggest some starting rhythmic templates
 # Add instruments - bass, organ, sax, synth, clavinet, rhodes, chimes
-# Adjust instrument levels to mix better
 # Add effects channels randomly selected (e.g. reverb, delay, filter)
-# Add breathing spaces between parts (i.e. Eli Keszler)
-# Randomize the tempo slow down point
 # Add simple panning of parts
-# Slow organ drones
+# Extend theme evolution section, slow down the evolution
+# Add tempo slow down in the middle
+# Add more instruments - Wulitzer, Hammond, vibes, brass
+# Adjust instrument levels to mix better
+# EQ final mix to give a more natural, live sound
 
 rules = {
 
@@ -24,17 +23,35 @@ rules = {
   ],
 
   "score": [
-    "[#set_mode#][note_offset_1:#set_note_offset#][#set_theme#][#set_drums#][#set_voices#]; #mode# #drums# voices=#voices# key=#note_offset_1#\nt 0 [tempo:#set_tempo#]#tempo# ;426 #tempo# 486 $BO#tempo#/4$BC 566 $BO#tempo#/4$BC 626 $BO#tempo#/4$BC\n#voices_template#\ns\n#end_piece#"
+    "[#set_mode2#][note_offset:#set_note_offset#][#set_theme#][#set_mode1#][#set_drums#][#set_voices#]; MODE1=#mode1# MODE2=#mode2# VOICES=#voices# NOTE_OFFSET=#note_offset#\nt 0 [tempo:#set_tempo#]#tempo# ;426 #tempo# 486 $BO#tempo#/4$BC 566 $BO#tempo#/4$BC 626 $BO#tempo#/4$BC\n#voices_template#\ns\n#end_piece#"
   ],
 
-  "set_mode": [
-    "[mode:ionian][note_option1:.00][note_option2:.00][note_option3:.00][note_option4:.00][note_option5:.02][note_option6:.04][note_option7:.04][note_option8:.05][note_option9:.07][note_option10:.07][note_option11:.09][note_option12:.11]",
-    "[mode:dorian][note_option1:.00][note_option2:.02][note_option3:.02][note_option4:.02][note_option5:.02][note_option6:.04][note_option7:.05][note_option8:.05][note_option9:.07][note_option10:.09][note_option11:.09][note_option12:.11]",
-    "[mode:phrygian][note_option1:.00][note_option2:.02][note_option3:.04][note_option4:.04][note_option5:.04][note_option6:.04][note_option7:.05][note_option8:.07][note_option9:.07][note_option10:.09][note_option11:.11][note_option12:.11]",
-    "[mode:lydian][note_option1:.00][note_option2:.00][note_option3:.02][note_option4:.04][note_option5:.05][note_option6:.05][note_option7:.05][note_option8:.05][note_option9:.07][note_option10:.09][note_option11:.09][note_option12:.11]",
-    "[mode:mixolydian][note_option1:.00][note_option2:.02][note_option3:.02][note_option4:.04][note_option5:.05][note_option6:.07][note_option7:.07][note_option8:.07][note_option9:.07][note_option10:.09][note_option11:.11][note_option12:.11]",
-    "[mode:aeolian][note_option1:.00][note_option2:.00][note_option3:.02][note_option4:.04][note_option5:.04][note_option6:.05][note_option7:.07][note_option8:.09][note_option9:.09][note_option10:.09][note_option11:.09][note_option12:.11]",
-    "[mode:locrian][note_option1:.00][note_option2:.02][note_option3:.02][note_option4:.04][note_option5:.05][note_option6:.05][note_option7:.07][note_option8:.09][note_option9:.11][note_option10:.11][note_option11:.11][note_option12:.11]"
+  "set_mode1": [
+    "[mode1:ionian][mode1_note1:.00][mode1_note2:.00][mode1_note3:.00][mode1_note4:.00][mode1_note5:.02][mode1_note6:.04][mode1_note7:.04][mode1_note8:.05][mode1_note9:.07][mode1_note10:.07][mode1_note11:.09][mode1_note12:.11][#set_mode1_note_options#]",
+    "[mode1:dorian][mode1_note1:.00][mode1_note2:.02][mode1_note3:.02][mode1_note4:.02][mode1_note5:.02][mode1_note6:.04][mode1_note7:.05][mode1_note8:.05][mode1_note9:.07][mode1_note10:.09][mode1_note11:.09][mode1_note12:.11][#set_mode1_note_options#]",
+    "[mode1:phrygian][mode1_note1:.00][mode1_note2:.02][mode1_note3:.04][mode1_note4:.04][mode1_note5:.04][mode1_note6:.04][mode1_note7:.05][mode1_note8:.07][mode1_note9:.07][mode1_note10:.09][mode1_note11:.11][mode1_note12:.11][#set_mode1_note_options#]",
+    "[mode1:lydian][mode1_note1:.00][mode1_note2:.00][mode1_note3:.02][mode1_note4:.04][mode1_note5:.05][mode1_note6:.05][mode1_note7:.05][mode1_note8:.05][mode1_note9:.07][mode1_note10:.09][mode1_note11:.09][mode1_note12:.11][#set_mode1_note_options#]",
+    "[mode1:mixolydian][mode1_note1:.00][mode1_note2:.02][mode1_note3:.02][mode1_note4:.04][mode1_note5:.05][mode1_note6:.07][mode1_note7:.07][mode1_note8:.07][mode1_note9:.07][mode1_note10:.09][mode1_note11:.11][mode1_note12:.11][#set_mode1_note_options#]",
+    "[mode1:aeolian][mode1_note1:.00][mode1_note2:.00][mode1_note3:.02][mode1_note4:.04][mode1_note5:.04][mode1_note6:.05][mode1_note7:.07][mode1_note8:.09][mode1_note9:.09][mode1_note10:.09][mode1_note11:.09][mode1_note12:.11][#set_mode1_note_options#]",
+    "[mode1:locrian][mode1_note1:.00][mode1_note2:.02][mode1_note3:.02][mode1_note4:.04][mode1_note5:.05][mode1_note6:.05][mode1_note7:.07][mode1_note8:.09][mode1_note9:.11][mode1_note10:.11][mode1_note11:.11][mode1_note12:.11][#set_mode1_note_options#]"
+  ],
+
+  "set_mode1_note_options": [
+    "[mode:#mode1#][note_option1:#mode1_note1#][note_option2:#mode1_note2#][note_option3:#mode1_note3#][note_option4:#mode1_note4#][note_option5:#mode1_note5#][note_option6:#mode1_note6#][note_option7:#mode1_note7#][note_option8:#mode1_note8#][note_option9:#mode1_note9#][note_option10:#mode1_note10#][note_option11:#mode1_note11#][note_option12:#mode1_note12#]"
+  ],
+
+  "set_mode2": [
+    "[mode2:ionian][mode2_note1:.00][mode2_note2:.00][mode2_note3:.00][mode2_note4:.00][mode2_note5:.02][mode2_note6:.04][mode2_note7:.04][mode2_note8:.05][mode2_note9:.07][mode2_note10:.07][mode2_note11:.09][mode2_note12:.11][#set_mode2_note_options#]",
+    "[mode2:dorian][mode2_note1:.00][mode2_note2:.02][mode2_note3:.02][mode2_note4:.02][mode2_note5:.02][mode2_note6:.04][mode2_note7:.05][mode2_note8:.05][mode2_note9:.07][mode2_note10:.09][mode2_note11:.09][mode2_note12:.11][#set_mode2_note_options#]",
+    "[mode2:phrygian][mode2_note1:.00][mode2_note2:.02][mode2_note3:.04][mode2_note4:.04][mode2_note5:.04][mode2_note6:.04][mode2_note7:.05][mode2_note8:.07][mode2_note9:.07][mode2_note10:.09][mode2_note11:.11][mode2_note12:.11][#set_mode2_note_options#]",
+    "[mode2:lydian][mode2_note1:.00][mode2_note2:.00][mode2_note3:.02][mode2_note4:.04][mode2_note5:.05][mode2_note6:.05][mode2_note7:.05][mode2_note8:.05][mode2_note9:.07][mode2_note10:.09][mode2_note11:.09][mode2_note12:.11][#set_mode2_note_options#]",
+    "[mode2:mixolydian][mode2_note1:.00][mode2_note2:.02][mode2_note3:.02][mode2_note4:.04][mode2_note5:.05][mode2_note6:.07][mode2_note7:.07][mode2_note8:.07][mode2_note9:.07][mode2_note10:.09][mode2_note11:.11][mode2_note12:.11][#set_mode2_note_options#]",
+    "[mode2:aeolian][mode2_note1:.00][mode2_note2:.00][mode2_note3:.02][mode2_note4:.04][mode2_note5:.04][mode2_note6:.05][mode2_note7:.07][mode2_note8:.09][mode2_note9:.09][mode2_note10:.09][mode2_note11:.09][mode2_note12:.11][#set_mode2_note_options#]",
+    "[mode2:locrian][mode2_note1:.00][mode2_note2:.02][mode2_note3:.02][mode2_note4:.04][mode2_note5:.05][mode2_note6:.05][mode2_note7:.07][mode2_note8:.09][mode2_note9:.11][mode2_note10:.11][mode2_note11:.11][mode2_note12:.11][#set_mode2_note_options#]"
+  ],
+
+  "set_mode2_note_options": [
+    "[mode:#mode2#][note_option1:#mode2_note1#][note_option2:#mode2_note2#][note_option3:#mode2_note3#][note_option4:#mode2_note4#][note_option5:#mode2_note5#][note_option6:#mode2_note6#][note_option7:#mode2_note7#][note_option8:#mode2_note8#][note_option9:#mode2_note9#][note_option10:#mode2_note10#][note_option11:#mode2_note11#][note_option12:#mode2_note12#]"
   ],
 
   "set_note_offset": [
@@ -82,11 +99,11 @@ rules = {
   ],
 
   "voice_constructor_rhythm": [
-      "[note_offset:#note_offset_1#][loop1:#set_measures_rhythm#][repeat:#set_repeat#]b $BO#max_loop_length#-#measures#*4*#repeat#$BC\n; SECTION 1: LOOP1 #mode#\n{ #repeat# CNT\n#loop1#}\n\n; SECTION 2: EVOLVE 1 #mode#\n#evolve_section_1#\n[#mode1#]; SECTION 3: EVOLVE 2, #mode#\n#evolve_section_2#\n[#mode1#]; SECTION 4: EVOLVE 3, #mode#\n#evolve_section_3#\n; SECTION 5: SILENCE\n#silence_section#\n; SECTION 6: EVOLVE THEME 1\n#evolve_theme_section_1#\n; SECTION 7: EVOLVE THEME 2\n#evolve_theme_section_2#\n"
+      "[#set_mode1_note_options#][loop1:#set_measures_rhythm#][repeat:#set_repeat#]b $BO#max_loop_length#-#measures#*4*#repeat#$BC\n; SECTION 1: LOOP1 #mode#\n{ #repeat# CNT\n#loop1#}\n\n; SECTION 2: EVOLVE 1 #mode#\n#evolve_section_1#\n; SECTION 3: EVOLVE 2, #mode#\n#evolve_section_2#\n[#mode1#]; SECTION 4: EVOLVE 3, #mode#\n#evolve_section_3#\n; SECTION 5: SILENCE\n#silence_section#\n; SECTION 6: EVOLVE THEME 1\n#evolve_theme_section_1#\n; SECTION 7: EVOLVE THEME 2\n#evolve_theme_section_2#\n"
   ],
 
   "voice_constructor_melody": [
-    "[note_offset:#note_offset_1#][loop1:#set_measures_melody#][repeat:#set_repeat#]b $BO#max_loop_length#-#measures#*4*#repeat#$BC\n; SECTION 1: LOOP1 #mode#\n{ #repeat# CNT\n#loop1#}\n\n; SECTION 2: EVOLVE 1 #mode#\n#evolve_section_1#\n[#mode1#]; SECTION 3: EVOLVE 2, #mode#\n#evolve_section_2#\n[#mode1#]; SECTION 4: EVOLVE 3, #mode#\n#evolve_section_3#\n; SECTION 5: SILENCE\n#silence_section#\n; SECTION 6: EVOLVE THEME 1\n#evolve_theme_section_1#\n; SECTION 7: EVOLVE THEME 2\n#evolve_theme_section_2#\n"
+    "[loop1:#set_measures_melody#][repeat:#set_repeat#]b $BO#max_loop_length#-#measures#*4*#repeat#$BC\n; SECTION 1: LOOP1 #mode#\n{ #repeat# CNT\n#loop1#}\n\n; SECTION 2: EVOLVE 1 #mode#\n#evolve_section_1#\n; SECTION 3: EVOLVE 2, #mode#\n#evolve_section_2#\n[#mode1#]; SECTION 4: EVOLVE 3, #mode#\n#evolve_section_3#\n; SECTION 5: SILENCE\n#silence_section#\n; SECTION 6: EVOLVE THEME 1\n#evolve_theme_section_1#\n; SECTION 7: EVOLVE THEME 2\n#evolve_theme_section_2#\n"
   ],
 
   "silence_356": [
@@ -121,7 +138,7 @@ rules = {
   ],
 
   "set_theme": [
-    "[theme_part1:#set_theme_part1#][theme_part2:#set_theme_part2#]"
+    "[#set_mode2_note_options#][theme_part1:#set_theme_part1#][theme_part2:#set_theme_part2#]"
   ],
 
   "set_theme_part1": [
@@ -133,17 +150,17 @@ rules = {
   ],
 
   "set_measures_rhythm": [
-    "[measures:3][#set_initial_line#]#initial_line_3#[evolve_section_1:#evolve_3#][evolve_section_2:#evolve_3#][evolve_section_3:#evolve_3#][#evolve_theme_line#][evolve_theme_section_1:#evolve_6#][evolve_theme_section_2:#evolve_6#][silence_section:#silence_356#]",
-    "[measures:4][#set_initial_line#]#initial_line_4#[evolve_section_1:#evolve_4#][evolve_section_2:#evolve_4#][evolve_section_3:#evolve_4#][evolve_theme_section_1:#evolve_6#][evolve_theme_section_2:#evolve_6#][silence_section:#silence_4#]",
-    "[measures:5][#set_initial_line#]#initial_line_5#[evolve_section_1:#evolve_5#][evolve_section_2:#evolve_5#][evolve_section_3:#evolve_5#][evolve_theme_section_1:#evolve_6#][evolve_theme_section_2:#evolve_6#][silence_section:#silence_356#]",
-    "[measures:6][#set_initial_line#]#initial_line_6#[evolve_section_1:#evolve_6#][evolve_section_2:#evolve_6#][evolve_section_3:#evolve_6#][evolve_theme_section_1:#evolve_6#][evolve_theme_section_2:#evolve_6#][silence_section:#silence_356#]"
+    "[#set_mode1_note_options#][measures:3][#set_initial_line#]#initial_line_3#[evolve_section_1:#evolve_3#][#set_mode2_note_options#][evolve_section_2:#evolve_3#][evolve_section_3:#evolve_3#][#evolve_theme_line#][evolve_theme_section_1:#evolve_6#][evolve_theme_section_2:#evolve_6#][silence_section:#silence_356#]",
+    "[#set_mode1_note_options#][measures:4][#set_initial_line#]#initial_line_4#[evolve_section_1:#evolve_4#][#set_mode2_note_options#][evolve_section_2:#evolve_4#][evolve_section_3:#evolve_4#][evolve_theme_section_1:#evolve_6#][evolve_theme_section_2:#evolve_6#][silence_section:#silence_4#]",
+    "[#set_mode1_note_options#][measures:5][#set_initial_line#]#initial_line_5#[evolve_section_1:#evolve_5#][#set_mode2_note_options#][evolve_section_2:#evolve_5#][evolve_section_3:#evolve_5#][evolve_theme_section_1:#evolve_6#][evolve_theme_section_2:#evolve_6#][silence_section:#silence_356#]",
+    "[#set_mode1_note_options#][measures:6][#set_initial_line#]#initial_line_6#[evolve_section_1:#evolve_6#][#set_mode2_note_options#][evolve_section_2:#evolve_6#][evolve_section_3:#evolve_6#][evolve_theme_section_1:#evolve_6#][evolve_theme_section_2:#evolve_6#][silence_section:#silence_356#]"
   ],
 
   "set_measures_melody": [
-    "[measures:3][#set_initial_line#]#initial_line_3#[evolve_section_1:#evolve_3#][evolve_section_2:#evolve_3#][evolve_section_3:#evolve_3#][evolve_theme_section_1:#evolve_theme_3#][evolve_theme_section_2:#evolve_theme_6#][silence_section:#silence_356#]",
-    "[measures:4][#set_initial_line#]#initial_line_4#[evolve_section_1:#evolve_4#][evolve_section_2:#evolve_4#][evolve_section_3:#evolve_4#][evolve_theme_section_1:#evolve_theme_3#][evolve_theme_section_2:#evolve_theme_6#][silence_section:#silence_4#]",
-    "[measures:5][#set_initial_line#]#initial_line_5#[evolve_section_1:#evolve_5#][evolve_section_2:#evolve_5#][evolve_section_3:#evolve_5#][evolve_theme_section_1:#evolve_theme_3#][evolve_theme_section_2:#evolve_theme_6#][silence_section:#silence_356#]",
-    "[measures:6][#set_initial_line#]#initial_line_6#[evolve_section_1:#evolve_6#][evolve_section_2:#evolve_6#][evolve_section_3:#evolve_6#][evolve_theme_section_1:#evolve_theme_3#][evolve_theme_section_2:#evolve_theme_6#][silence_section:#silence_356#]"
+    "[#set_mode1_note_options#][measures:3][#set_initial_line#]#initial_line_3#[evolve_section_1:#evolve_3#][#set_mode2_note_options#][evolve_section_2:#evolve_3#][evolve_section_3:#evolve_3#][evolve_theme_section_1:#evolve_theme_3#][evolve_theme_section_2:#evolve_theme_6#][silence_section:#silence_356#]",
+    "[#set_mode1_note_options#][measures:4][#set_initial_line#]#initial_line_4#[evolve_section_1:#evolve_4#][#set_mode2_note_options#][evolve_section_2:#evolve_4#][evolve_section_3:#evolve_4#][evolve_theme_section_1:#evolve_theme_3#][evolve_theme_section_2:#evolve_theme_6#][silence_section:#silence_4#]",
+    "[#set_mode1_note_options#][measures:5][#set_initial_line#]#initial_line_5#[evolve_section_1:#evolve_5#][#set_mode2_note_options#][evolve_section_2:#evolve_5#][evolve_section_3:#evolve_5#][evolve_theme_section_1:#evolve_theme_3#][evolve_theme_section_2:#evolve_theme_6#][silence_section:#silence_356#]",
+    "[#set_mode1_note_options#][measures:6][#set_initial_line#]#initial_line_6#[evolve_section_1:#evolve_6#][#set_mode2_note_options#][evolve_section_2:#evolve_6#][evolve_section_3:#evolve_6#][evolve_theme_section_1:#evolve_theme_3#][evolve_theme_section_2:#evolve_theme_6#][silence_section:#silence_356#]"
   ],
 
   "set_initial_line": [
@@ -207,99 +224,99 @@ rules = {
   ],
 
   "evolve_note1": [
-    "#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#[note1_evolve:#note#]note1_evolve#"
+    "#note1_evolve#","#note1_evolve#","#[note1_evolve:#note#]note1_evolve#"
   ],
 
   "evolve_note2": [
-    "#note2#","#note2#","#note2#","#note2#","#[note2:#note#]note2#"
+    "#note2#","#note2#","#[note2:#note#]note2#"
   ],
 
   "evolve_note3": [
-    "#note3#","#note3#","#note3#","#note3#","#[note3:#note#]note3#"
+    "#note3#","#note3#","#[note3:#note#]note3#"
   ],
 
   "evolve_note4": [
-    "#note4#","#note4#","#note4#","#note4#","#[note4:#note#]note4#"
+    "#note4#","#note4#","#[note4:#note#]note4#"
   ],
 
   "evolve_note5": [
-    "#note5#","#note5#","#note5#","#note5#","#[note5:#note#]note5#"
+    "#note5#","#note5#","#[note5:#note#]note5#"
   ],
 
   "evolve_note6": [
-    "#note6#","#note6#","#note6#","#note6#","#[note6:#note#]note6#"
+    "#note6#","#note6#","#[note6:#note#]note6#"
   ],
 
   "evolve_note7": [
-    "#note7#","#note7#","#note7#","#note7#","#[note7:#note#]note7#"
+    "#note7#","#note7#","#[note7:#note#]note7#"
   ],
 
   "evolve_note8": [
-    "#note8#","#note8#","#note8#","#note8#","#[note8:#note#]note8#"
+    "#note8#","#note8#","#[note8:#note#]note8#"
   ],
 
   "evolve_note9": [
-    "#note9#","#note9#","#note9#","#note9#","#[note9:#note#]note9#"
+    "#note9#","#note9#","#[note9:#note#]note9#"
   ],
 
   "evolve_note10": [
-    "#note10#","#note10#","#note10#","#note10#","#[note10:#note#]note10#"
+    "#note10#","#note10#","#[note10:#note#]note10#"
   ],
 
   "evolve_note11": [
-    "#note11#","#note11#","#note11#","#note11#","#[note11:#note#]note11#"
+    "#note11#","#note11#","#[note11:#note#]note11#"
   ],
 
   "evolve_note12": [
-    "#note12#","#note12#","#note12#","#note12#","#[note12:#note#]note12#"
+    "#note12#","#note12#","#[note12:#note#]note12#"
   ],
 
   "evolve_note13": [
-    "#note13#","#note13#","#note13#","#note13#","#[note13:#note#]note13#"
+    "#note13#","#note13#","#[note13:#note#]note13#"
   ],
 
   "evolve_note14": [
-    "#note14#","#note14#","#note14#","#note14#","#[note14:#note#]note14#"
+    "#note14#","#note14#","#[note14:#note#]note14#"
   ],
 
   "evolve_note15": [
-    "#note15#","#note15#","#note15#","#note15#","#[note15:#note#]note15#"
+    "#note15#","#note15#","#[note15:#note#]note15#"
   ],
 
   "evolve_note16": [
-    "#note16#","#note16#","#note16#","#note16#","#[note16:#note#]note16#"
+    "#note16#","#note16#","#[note16:#note#]note16#"
   ],
 
   "evolve_note17": [
-    "#note17#","#note17#","#note17#","#note17#","#[note17:#note#]note17#"
+    "#note17#","#note17#","#[note17:#note#]note17#"
   ],
 
   "evolve_note18": [
-    "#note18#","#note18#","#note18#","#note18#","#[note18:#note#]note18#"
+    "#note18#","#note18#","#[note18:#note#]note18#"
   ],
 
   "evolve_note19": [
-    "#note19#","#note19#","#note19#","#note19#","#[note19:#note#]note19#"
+    "#note19#","#note19#","#[note19:#note#]note19#"
   ],
 
   "evolve_note20": [
-    "#note20#","#note20#","#note20#","#note20#","#[note20:#note#]note20#"
+    "#note20#","#note20#","#[note20:#note#]note20#"
   ],
 
   "evolve_note21": [
-    "#note21#","#note21#","#note21#","#note21#","#[note21:#note#]note21#"
+    "#note21#","#note21#","#[note21:#note#]note21#"
   ],
 
   "evolve_note22": [
-    "#note22#","#note22#","#note22#","#note22#","#[note22:#note#]note22#"
+    "#note22#","#note22#","#[note22:#note#]note22#"
   ],
 
   "evolve_note23": [
-    "#note23#","#note23#","#note23#","#note23#","#[note23:#note#]note23#"
+    "#note23#","#note23#","#[note23:#note#]note23#"
   ],
 
   "evolve_note24": [
-    "#note24#","#note24#","#note24#","#note24#","#[note24:#note#]note24#"
+    "#note24#","#note24#","#[note24:#note#]note24#"
   ],
 
   "evolve_theme_3": [
@@ -447,11 +464,11 @@ rules = {
   ],
 
   "note_1": [
-    "i #inst# $BO0+$CNT*#measures#*4$BC 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options# #note_offset#$BC\n"
+    "i #inst# $BO0+$CNT*#measures#*4$BC 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options# #note_offset#$BC ; #mode#\n"
   ],
 
   "note": [
-    "i #inst# + 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options# #note_offset#$BC\n"
+    "i #inst# + 1 #dur# $BO[#set_on_off#]#amp#*#note_on_off#/#voices#$BC $BO#inst_register#+#note_options# #note_offset#$BC ; #mode#\n"
   ],
 
   "note_options": [
@@ -521,8 +538,8 @@ instr 100 ; STRING PLUCK
     aSig	wgpluck2  0.58, p5, cpspch(p6), iPlk, irefl	; generate Karplus-Strong plucked string audio
     kcf	expon	cpsoct(rnd(6)+6),p3,50				; filter cutoff frequency envelope
     aSig	clfilt	aSig, kcf, 0, 2					; butterworth lowpass filter
-    chnmix aSig*aEnv*1.5, "mixl"
-	chnmix aSig*aEnv*1.5, "mixr"
+    chnmix aSig*aEnv*2.5, "mixl"
+	chnmix aSig*aEnv*2.5, "mixr"
 endin
 
 instr 101 ; ORGAN
