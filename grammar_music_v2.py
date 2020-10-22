@@ -6,15 +6,13 @@ from datetime import datetime
 
 # TASKS
 # 3/4 time
-# Suggest some starting rhythmic templates
-# Add instruments - bass, organ, sax, synth, clavinet, rhodes, chimes
 # Add effects channels randomly selected (e.g. reverb, delay, filter)
 # Add simple panning of parts
 # Extend theme evolution section, slow down the evolution
-# Add tempo slow down in the middle
-# Add more instruments - Wulitzer, Hammond, vibes, brass
+# Add more instruments - Wulitzer, Hammond, vibes, brass, reeds, synth, clavinet
 # Adjust instrument levels to mix better
 # EQ final mix to give a more natural, live sound
+# Add harmony to finale
 
 rules = {
 
@@ -23,7 +21,7 @@ rules = {
   ],
 
   "score": [
-    "[#set_mode2#][note_offset:#set_note_offset#][#set_theme#][#set_mode1#][#set_drums#][#set_voices#]; MODE1=#mode1# MODE2=#mode2# VOICES=#voices# NOTE_OFFSET=#note_offset#\nt 0 [tempo:#set_tempo#]#tempo# ;426 #tempo# 486 $BO#tempo#/4$BC 566 $BO#tempo#/4$BC 626 $BO#tempo#/4$BC\n#voices_template#\ns\n#end_piece#"
+    "[#set_mode2#][note_offset:#set_note_offset#][#set_theme#][#set_mode1#][#set_drums#][#set_voices#]; MODE1=#mode1# MODE2=#mode2# DRUMS=#drums# VOICES=#voices# NOTE_OFFSET=#note_offset#\nt 0 [tempo:#set_tempo#]#tempo# 540 #tempo# 600 $BO#tempo#/4$BC 601 #tempo#\n#voices_template#\ns\n#end_piece#"
   ],
 
   "set_mode1": [
@@ -107,11 +105,11 @@ rules = {
   ],
 
   "silence_356": [
-    "#silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note#"
+    "#silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note#"
   ],
 
   "silence_4": [
-    "#silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note#"
+    "#silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note##silent_note#"
   ],
 
   "silent_note": [
@@ -122,19 +120,21 @@ rules = {
      "[drums:tr808][drum_parts:1,2,3,4,5,6,7,8,9,10,11][register:8]",
      "[drums:emu][drum_parts:12,13,14,15,16,17,18,19,20,21,22,23][register:8]",
      "[drums:linn][drum_parts:24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40][register:8]",
-     "[drums:oberheim][drum_parts:41,42,43,44,45,46,47,48,49][register:8]"
+     "[drums:oberheim][drum_parts:41,42,43,44,45,46,47,48,49][register:8]",
+     "[drums:cr78][drum_parts:55,56,57,58,59,60,61,62,63,64,65][register:8]",
+     "[drums:univox][drum_parts:66,67,68,69,70,71,72][register:8]"
   ],
 
   "melody_parts": [
-    "[name:string_pluck][register:7,8,9]100",
+    "[name:string_pluck][register:8,9]100",
     "[name:organ][register:7,8,9]101",
+    "[name:b3][register:7,8,9]102",
     "[name:rhodes][register:7,8,9]105",
-    "[name:marimba][register:7,8,9,10]106"
+    "[name:marimba][register:7,8,9]106"
   ],
 
   "bass_parts": [
-    "[name:string_pluck][register:6]100",
-    "[name:organ][register:5,6]101"
+    "[name:string_pluck][register:6]100"
   ],
 
   "set_theme": [
@@ -356,99 +356,99 @@ rules = {
   ],
 
   "evolve_theme_note1": [
-    "#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#[theme_note_dur:#theme_note_dur_1#][theme_note_on_off:#theme_note_on_off_1#][theme_note_value:#theme_note_value_1#][note1_evolve:#evolve_theme_note_constructor#]note1_evolve#"
+    "#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#note1_evolve#","#[theme_note_dur:#theme_note_dur_1#][theme_note_on_off:#theme_note_on_off_1#][theme_note_value:#theme_note_value_1#][note1_evolve:#evolve_theme_note_constructor#]note1_evolve#"
   ],
 
   "evolve_theme_note2": [
-    "#note2#","#note2#","#note2#","#note2#","#note2#","#note2#","#[theme_note_dur:#theme_note_dur_2#][theme_note_on_off:#theme_note_on_off_2#][theme_note_value:#theme_note_value_2#][note2:#evolve_theme_note_constructor#]note2#"
+    "#note2#","#note2#","#note2#","#note2#","#note2#","#note2#","#note2#","#note2#","#[theme_note_dur:#theme_note_dur_2#][theme_note_on_off:#theme_note_on_off_2#][theme_note_value:#theme_note_value_2#][note2:#evolve_theme_note_constructor#]note2#"
   ],
 
   "evolve_theme_note3": [
-    "#note3#","#note3#","#note3#","#note3#","#note3#","#note3#","#[theme_note_dur:#theme_note_dur_3#][theme_note_on_off:#theme_note_on_off_3#][theme_note_value:#theme_note_value_3#][note3:#evolve_theme_note_constructor#]note3#"
+    "#note3#","#note3#","#note3#","#note3#","#note3#","#note3#","#note3#","#note3#","#[theme_note_dur:#theme_note_dur_3#][theme_note_on_off:#theme_note_on_off_3#][theme_note_value:#theme_note_value_3#][note3:#evolve_theme_note_constructor#]note3#"
   ],
 
   "evolve_theme_note4": [
-    "#note4#","#note4#","#note4#","#note4#","#note4#","#note4#","#[theme_note_dur:#theme_note_dur_4#][theme_note_on_off:#theme_note_on_off_4#][theme_note_value:#theme_note_value_4#][note4:#evolve_theme_note_constructor#]note4#"
+    "#note4#","#note4#","#note4#","#note4#","#note4#","#note4#","#note4#","#note4#","#[theme_note_dur:#theme_note_dur_4#][theme_note_on_off:#theme_note_on_off_4#][theme_note_value:#theme_note_value_4#][note4:#evolve_theme_note_constructor#]note4#"
   ],
 
   "evolve_theme_note5": [
-    "#note5#","#note5#","#note5#","#note5#","#note5#","#note5#","#[theme_note_dur:#theme_note_dur_5#][theme_note_on_off:#theme_note_on_off_5#][theme_note_value:#theme_note_value_5#][note5:#evolve_theme_note_constructor#]note5#"
+    "#note5#","#note5#","#note5#","#note5#","#note5#","#note5#","#note5#","#note5#","#[theme_note_dur:#theme_note_dur_5#][theme_note_on_off:#theme_note_on_off_5#][theme_note_value:#theme_note_value_5#][note5:#evolve_theme_note_constructor#]note5#"
   ],
 
   "evolve_theme_note6": [
-    "#note6#","#note6#","#note6#","#note6#","#note6#","#note6#","#[theme_note_dur:#theme_note_dur_6#][theme_note_on_off:#theme_note_on_off_6#][theme_note_value:#theme_note_value_6#][note6:#evolve_theme_note_constructor#]note6#"
+    "#note6#","#note6#","#note6#","#note6#","#note6#","#note6#","#note6#","#note6#","#[theme_note_dur:#theme_note_dur_6#][theme_note_on_off:#theme_note_on_off_6#][theme_note_value:#theme_note_value_6#][note6:#evolve_theme_note_constructor#]note6#"
   ],
 
   "evolve_theme_note7": [
-    "#note7#","#note7#","#note7#","#note7#","#note7#","#note7#","#[theme_note_dur:#theme_note_dur_7#][theme_note_on_off:#theme_note_on_off_7#][theme_note_value:#theme_note_value_7#][note7:#evolve_theme_note_constructor#]note7#"
+    "#note7#","#note7#","#note7#","#note7#","#note7#","#note7#","#note7#","#note7#","#[theme_note_dur:#theme_note_dur_7#][theme_note_on_off:#theme_note_on_off_7#][theme_note_value:#theme_note_value_7#][note7:#evolve_theme_note_constructor#]note7#"
   ],
 
   "evolve_theme_note8": [
-    "#note8#","#note8#","#note8#","#note8#","#note8#","#note8#","#[theme_note_dur:#theme_note_dur_8#][theme_note_on_off:#theme_note_on_off_8#][theme_note_value:#theme_note_value_8#][note8:#evolve_theme_note_constructor#]note8#"
+    "#note8#","#note8#","#note8#","#note8#","#note8#","#note8#","#note8#","#note8#","#[theme_note_dur:#theme_note_dur_8#][theme_note_on_off:#theme_note_on_off_8#][theme_note_value:#theme_note_value_8#][note8:#evolve_theme_note_constructor#]note8#"
   ],
 
   "evolve_theme_note9": [
-    "#note9#","#note9#","#note9#","#note9#","#note9#","#note9#","#[theme_note_dur:#theme_note_dur_9#][theme_note_on_off:#theme_note_on_off_9#][theme_note_value:#theme_note_value_9#][note9:#evolve_theme_note_constructor#]note9#"
+    "#note9#","#note9#","#note9#","#note9#","#note9#","#note9#","#note9#","#note9#","#[theme_note_dur:#theme_note_dur_9#][theme_note_on_off:#theme_note_on_off_9#][theme_note_value:#theme_note_value_9#][note9:#evolve_theme_note_constructor#]note9#"
   ],
 
   "evolve_theme_note10": [
-    "#note10#","#note10#","#note10#","#note10#","#note10#","#note10#","#[theme_note_dur:#theme_note_dur_10#][theme_note_on_off:#theme_note_on_off_10#][theme_note_value:#theme_note_value_10#][note10:#evolve_theme_note_constructor#]note10#"
+    "#note10#","#note10#","#note10#","#note10#","#note10#","#note10#","#note10#","#note10#","#[theme_note_dur:#theme_note_dur_10#][theme_note_on_off:#theme_note_on_off_10#][theme_note_value:#theme_note_value_10#][note10:#evolve_theme_note_constructor#]note10#"
   ],
 
   "evolve_theme_note11": [
-    "#note11#","#note11#","#note11#","#note11#","#note11#","#note11#","#[theme_note_dur:#theme_note_dur_11#][theme_note_on_off:#theme_note_on_off_11#][theme_note_value:#theme_note_value_11#][note11:#evolve_theme_note_constructor#]note11#"
+    "#note11#","#note11#","#note11#","#note11#","#note11#","#note11#","#note11#","#note11#","#[theme_note_dur:#theme_note_dur_11#][theme_note_on_off:#theme_note_on_off_11#][theme_note_value:#theme_note_value_11#][note11:#evolve_theme_note_constructor#]note11#"
   ],
 
   "evolve_theme_note12": [
-    "#note12#","#note12#","#note12#","#note12#","#note12#","#note12#","#[theme_note_dur:#theme_note_dur_12#][theme_note_on_off:#theme_note_on_off_12#][theme_note_value:#theme_note_value_12#][note12:#evolve_theme_note_constructor#]note12#"
+    "#note12#","#note12#","#note12#","#note12#","#note12#","#note12#","#note12#","#note12#","#[theme_note_dur:#theme_note_dur_12#][theme_note_on_off:#theme_note_on_off_12#][theme_note_value:#theme_note_value_12#][note12:#evolve_theme_note_constructor#]note12#"
   ],
 
   "evolve_theme_note13": [
-    "#note13#","#note13#","#note13#","#note13#","#note13#","#note13#","#[theme_note_dur:#theme_note_dur_13#][theme_note_on_off:#theme_note_on_off_13#][theme_note_value:#theme_note_value_13#][note13:#evolve_theme_note_constructor#]note13#"
+    "#note13#","#note13#","#note13#","#note13#","#note13#","#note13#","#note13#","#note13#","#[theme_note_dur:#theme_note_dur_13#][theme_note_on_off:#theme_note_on_off_13#][theme_note_value:#theme_note_value_13#][note13:#evolve_theme_note_constructor#]note13#"
   ],
 
   "evolve_theme_note14": [
-    "#note14#","#note14#","#note14#","#note14#","#note14#","#note14#","#[theme_note_dur:#theme_note_dur_14#][theme_note_on_off:#theme_note_on_off_14#][theme_note_value:#theme_note_value_14#][note14:#evolve_theme_note_constructor#]note14#"
+    "#note14#","#note14#","#note14#","#note14#","#note14#","#note14#","#note14#","#note14#","#[theme_note_dur:#theme_note_dur_14#][theme_note_on_off:#theme_note_on_off_14#][theme_note_value:#theme_note_value_14#][note14:#evolve_theme_note_constructor#]note14#"
   ],
 
   "evolve_theme_note15": [
-    "#note15#","#note15#","#note15#","#note15#","#note15#","#note15#","#[theme_note_dur:#theme_note_dur_15#][theme_note_on_off:#theme_note_on_off_15#][theme_note_value:#theme_note_value_15#][note15:#evolve_theme_note_constructor#]note15#"
+    "#note15#","#note15#","#note15#","#note15#","#note15#","#note15#","#note15#","#note15#","#[theme_note_dur:#theme_note_dur_15#][theme_note_on_off:#theme_note_on_off_15#][theme_note_value:#theme_note_value_15#][note15:#evolve_theme_note_constructor#]note15#"
   ],
 
   "evolve_theme_note16": [
-    "#note16#","#note16#","#note16#","#note16#","#note16#","#note16#","#[theme_note_dur:#theme_note_dur_16#][theme_note_on_off:#theme_note_on_off_16#][theme_note_value:#theme_note_value_16#][note16:#evolve_theme_note_constructor#]note16#"
+    "#note16#","#note16#","#note16#","#note16#","#note16#","#note16#","#note16#","#note16#","#[theme_note_dur:#theme_note_dur_16#][theme_note_on_off:#theme_note_on_off_16#][theme_note_value:#theme_note_value_16#][note16:#evolve_theme_note_constructor#]note16#"
   ],
 
   "evolve_theme_note17": [
-    "#note17#","#note17#","#note17#","#note17#","#note17#","#note17#","#[theme_note_dur:#theme_note_dur_17#][theme_note_on_off:#theme_note_on_off_17#][theme_note_value:#theme_note_value_17#][note17:#evolve_theme_note_constructor#]note17#"
+    "#note17#","#note17#","#note17#","#note17#","#note17#","#note17#","#note17#","#note17#","#[theme_note_dur:#theme_note_dur_17#][theme_note_on_off:#theme_note_on_off_17#][theme_note_value:#theme_note_value_17#][note17:#evolve_theme_note_constructor#]note17#"
   ],
 
   "evolve_theme_note18": [
-    "#note18#","#note18#","#note18#","#note18#","#note18#","#note18#","#[theme_note_dur:#theme_note_dur_18#][theme_note_on_off:#theme_note_on_off_18#][theme_note_value:#theme_note_value_18#][note18:#evolve_theme_note_constructor#]note18#"
+    "#note18#","#note18#","#note18#","#note18#","#note18#","#note18#","#note18#","#note18#","#[theme_note_dur:#theme_note_dur_18#][theme_note_on_off:#theme_note_on_off_18#][theme_note_value:#theme_note_value_18#][note18:#evolve_theme_note_constructor#]note18#"
   ],
 
   "evolve_theme_note19": [
-    "#note19#","#note19#","#note19#","#note19#","#note19#","#note19#","#[theme_note_dur:#theme_note_dur_19#][theme_note_on_off:#theme_note_on_off_19#][theme_note_value:#theme_note_value_19#][note19:#evolve_theme_note_constructor#]note19#"
+    "#note19#","#note19#","#note19#","#note19#","#note19#","#note19#","#note19#","#note19#","#[theme_note_dur:#theme_note_dur_19#][theme_note_on_off:#theme_note_on_off_19#][theme_note_value:#theme_note_value_19#][note19:#evolve_theme_note_constructor#]note19#"
   ],
 
   "evolve_theme_note20": [
-    "#note20#","#note20#","#note20#","#note20#","#note20#","#note20#","#[theme_note_dur:#theme_note_dur_20#][theme_note_on_off:#theme_note_on_off_20#][theme_note_value:#theme_note_value_20#][note20:#evolve_theme_note_constructor#]note20#"
+    "#note20#","#note20#","#note20#","#note20#","#note20#","#note20#","#note20#","#note20#","#[theme_note_dur:#theme_note_dur_20#][theme_note_on_off:#theme_note_on_off_20#][theme_note_value:#theme_note_value_20#][note20:#evolve_theme_note_constructor#]note20#"
   ],
 
   "evolve_theme_note21": [
-    "#note21#","#note21#","#note21#","#note21#","#note21#","#note21#","#[theme_note_dur:#theme_note_dur_21#][theme_note_on_off:#theme_note_on_off_21#][theme_note_value:#theme_note_value_21#][note21:#evolve_theme_note_constructor#]note21#"
+    "#note21#","#note21#","#note21#","#note21#","#note21#","#note21#","#note21#","#note21#","#[theme_note_dur:#theme_note_dur_21#][theme_note_on_off:#theme_note_on_off_21#][theme_note_value:#theme_note_value_21#][note21:#evolve_theme_note_constructor#]note21#"
   ],
 
   "evolve_theme_note22": [
-    "#note22#","#note22#","#note22#","#note22#","#note22#","#note22#","#[theme_note_dur:#theme_note_dur_22#][theme_note_on_off:#theme_note_on_off_22#][theme_note_value:#theme_note_value_22#][note22:#evolve_theme_note_constructor#]note22#"
+    "#note22#","#note22#","#note22#","#note22#","#note22#","#note22#","#note22#","#note22#","#[theme_note_dur:#theme_note_dur_22#][theme_note_on_off:#theme_note_on_off_22#][theme_note_value:#theme_note_value_22#][note22:#evolve_theme_note_constructor#]note22#"
   ],
 
   "evolve_theme_note23": [
-    "#note23#","#note23#","#note23#","#note23#","#note23#","#note23#","#[theme_note_dur:#theme_note_dur_23#][theme_note_on_off:#theme_note_on_off_23#][theme_note_value:#theme_note_value_23#][note23:#evolve_theme_note_constructor#]note23#"
+    "#note23#","#note23#","#note23#","#note23#","#note23#","#note23#","#note23#","#note23#","#[theme_note_dur:#theme_note_dur_23#][theme_note_on_off:#theme_note_on_off_23#][theme_note_value:#theme_note_value_23#][note23:#evolve_theme_note_constructor#]note23#"
   ],
 
   "evolve_theme_note24": [
-    "#note24#","#note24#","#note24#","#note24#","#note24#","#note24#","#[theme_note_dur:#theme_note_dur_24#][theme_note_on_off:#theme_note_on_off_24#][theme_note_value:#theme_note_value_24#][note24:#evolve_theme_note_constructor#]note24#"
+    "#note24#","#note24#","#note24#","#note24#","#note24#","#note24#","#note24#","#note24#","#[theme_note_dur:#theme_note_dur_24#][theme_note_on_off:#theme_note_on_off_24#][theme_note_value:#theme_note_value_24#][note24:#evolve_theme_note_constructor#]note24#"
   ],
 
   "evolve_theme_note_constructor": [
@@ -530,22 +530,22 @@ nchnls = 2
 instr 100 ; STRING PLUCK
     p3=p4
     seed 0
-    irefl	random 0.001, 0.999
+    irefl	random 0.001, 0.4
     aEnv	linsegr	0, 0.005, 1, p3-0.105, 1, 0.1, 0		; amplitude envelope
-    iPlk	random	0.1, 0.3					; point at which to pluck the string
+    iPlk	random	0.1, 0.6					; point at which to pluck the string
     iDtn	random    -0.05, 0.05					; random detune
     ;irefl	table	inum, giScal1					; read reflection value from giScal table according to note number
     aSig	wgpluck2  0.58, p5, cpspch(p6), iPlk, irefl	; generate Karplus-Strong plucked string audio
     kcf	expon	cpsoct(rnd(6)+6),p3,50				; filter cutoff frequency envelope
     aSig	clfilt	aSig, kcf, 0, 2					; butterworth lowpass filter
-    chnmix aSig*aEnv*2.5, "mixl"
-	chnmix aSig*aEnv*2.5, "mixr"
+    chnmix aSig*aEnv*2, "mixl"
+	chnmix aSig*aEnv*2, "mixr"
 endin
 
 instr 101 ; ORGAN
     p3=p4
     ifrq = cpspch(p6)
-    kenv madsr 0.001,0.5,0.7,0.2
+    kenv adsr 0.001,0.1,0.7,0.1
     a1     oscili 8/43,   1      * ifrq
     a2     oscili 8/43,   2      * ifrq
     a3     oscili 8/43,   2.9966 * ifrq
@@ -555,22 +555,21 @@ instr 101 ; ORGAN
     a7     oscili 1/43,  10.0794 * ifrq
     a8     oscili 1/43,  11.9864 * ifrq
     a9     oscili 4/43,  16      * ifrq
-    asig = kenv*p5*0.5*(a1+a2+a3+a4+a5+a6+a7+a8+a9)
+    asig = kenv*p5*0.8*(a1+a2+a3+a4+a5+a6+a7+a8+a9)
     chnmix asig, "mixl"
     chnmix asig, "mixr"
 endin
 
-instr 102 ; CHIMES
+instr 102 ; B3 ORGAN
     p3=p4
-    iamp = p5*.3
-    kfreq = cpspch(p6)
-    kc1 = 10
-    kc2 = 5
-    kvdepth = 0.1
-    kvrate = 5
+    kfreq cpspch p6
+    kc1 = 0.5
+    kc2 = 0.5
+    kvrate = 6
 
-    kenv linseg 0,0.1,iamp,p3-0.2,iamp,0.1,0
-    asig fmbell kenv, kfreq, kc1, kc2, kvdepth, kvrate, -1, -1, -1, -1, -1, 3
+    kenv adsr 0.001,0.1,0.7,0.1
+    kvdpth line 0, p3, 0.1
+    asig   fmb3 kenv*p5*1.3, kfreq, kc1, kc2, kvdpth, kvrate
     chnmix asig, "mixl"
 	chnmix asig, "mixr"
 endin
@@ -618,8 +617,8 @@ instr 105 ; RHODES
     ivfn = -1
     kenv expseg 0.001,0.01,p5,p3-0.02,p5,0.01,0.001
     asig fmrhode kenv, kfreq, kc1, kc2, kvdepth, kvrate, ifn1, ifn2, ifn3, ifn4, ivfn
-    chnmix asig, "mixl"
-	chnmix asig, "mixr"
+    chnmix asig*0.8, "mixl"
+	chnmix asig*0.8, "mixr"
 endin
 
 instr 106 ; MARIMBA
@@ -638,7 +637,7 @@ instr 106 ; MARIMBA
     chnmix asig, "mixr"
 endin
 
-instr 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52 ; DRUMS
+instr 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72 ; DRUMS
     p3=4
 	if ftchnls(p1) == 1 then
 		asigl loscil p5, 1, p1, 1, 0
@@ -654,8 +653,10 @@ endin
 instr 1000 ; mixer
     asigl chnget "mixl"
     asigr chnget "mixr"
-    areverbl,areverbr freeverb asigl,asigr,0.4,0.7
-    outs asigl+areverbl*1.5,asigr+areverbr*1.5
+    ;asigl butterlp asigl, 5000
+    ;asigr butterlp asigr, 5000
+    areverbl,areverbr freeverb asigl,asigr,0.6,0.7
+    outs asigl*0.8+areverbl*1.5,asigr*0.8+areverbr*1.5
     chnclear "mixl"
     chnclear "mixr"
 endin
@@ -714,8 +715,26 @@ f 49 0 0 1 "drums/oberheim/oberheim_tamborine.wav" 0 0 0
 f 50 0 0 1 "drums/oberheim/oberheim_tom1.wav" 0 0 0
 f 51 0 0 1 "drums/oberheim/oberheim_tom2.wav" 0 0 0
 f 52 0 0 1 "drums/oberheim/oberheim_tom3.wav" 0 0 0
-f 53 0 256 1 "fwavblnk.aiff" 0 0 0
-f 54 0 256 1 "marmstk1.wav" 0 0 0
+f 53 0 256 1 "fwavblnk.aiff" 0 0 0 ;RHODES
+f 54 0 256 1 "marmstk1.wav" 0 0 0 ;MARIMBA
+f 55 0 0 1 "drums/cr78/cr78_Bongo_High.wav" 0 0 0
+f 56 0 0 1 "drums/cr78/cr78_Bongo_Low.wav" 0 0 0
+f 57 0 0 1 "drums/cr78/cr78_Conga_Low.wav" 0 0 0
+f 58 0 0 1 "drums/cr78/cr78_Cymbal.wav" 0 0 0
+f 59 0 0 1 "drums/cr78/cr78_Guiro_Short.wav" 0 0 0
+f 60 0 0 1 "drums/cr78/cr78_Hat_Closed.wav" 0 0 0
+f 61 0 0 1 "drums/cr78/cr78_Hi_Hat.wav" 0 0 0
+f 62 0 0 1 "drums/cr78/cr78_Kick3.wav" 0 0 0
+f 63 0 0 1 "drums/cr78/cr78_Rim_Shot.wav" 0 0 0
+f 64 0 0 1 "drums/cr78/cr78_Snare.wav" 0 0 0
+f 65 0 0 1 "drums/cr78/cr78_Tamb1.wav" 0 0 0
+f 66 0 0 1 "drums/univox/univox_CHH.wav" 0 0 0
+f 67 0 0 1 "drums/univox/univox_Guiro_Short.wav" 0 0 0
+f 68 0 0 1 "drums/univox/univox_Kick.wav" 0 0 0
+f 69 0 0 1 "drums/univox/univox_Perc1.wav" 0 0 0
+f 70 0 0 1 "drums/univox/univox_Perc2.wav" 0 0 0
+f 71 0 0 1 "drums/univox/univox_Quijada.wav" 0 0 0
+f 72 0 0 1 "drums/univox/univox_Snare2.wav" 0 0 0
 i 1000 0 -1
 '''
 csd = csd + output + '''

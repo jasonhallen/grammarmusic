@@ -34,7 +34,7 @@ instr 2
 
 endin
 
-instr 3
+instr 3 ;ORGAN
   ifrq = cpspch(p5)
 
   kenv madsr 0.001,0.5,0.7,0.2
@@ -54,12 +54,12 @@ instr 3
   outs aorgan, aorgan
 endin
 
-instr 4
+instr 4 ; B3 ORGAN
 
-kfreq cpspch p5
+kfreq = cpspch(p5)
 kc1 = p6
 kc2 = p7
-kvrate = 6
+kvrate = 5
 
 kvdpth line 0, p3, p8
 asig   fmb3 p4, kfreq, kc1, kc2, kvdpth, kvrate
@@ -83,9 +83,9 @@ endin
 instr 6 ;STRING PLUCK
     p3=p4
     seed 0
-    irefl	random 0.001, 0.999
+    irefl	random 0.001, 0.4
     aEnv	linsegr	0, 0.005, 1, p3-0.105, 1, 0.1, 0		; amplitude envelope
-    iPlk	random	0.1, 0.3					; point at which to pluck the string
+    iPlk	random	0.1, 0.6					; point at which to pluck the string
     iDtn	random    -0.05, 0.05					; random detune
     ;irefl	table	inum, giScal1					; read reflection value from giScal table according to note number
     aSig	wgpluck2  0.58, p5, cpspch(p6), iPlk, irefl	; generate Karplus-Strong plucked string audio
@@ -145,7 +145,7 @@ endin
 
 instr 10 ;MARIMBA
   ifreq = cpspch(p5)
-  ihrd = 0.1
+  ihrd = 0.4
   ipos = 0.561
   imp = 3
   kvibf = 6.0
@@ -157,19 +157,121 @@ instr 10 ;MARIMBA
 
   outs a1, a1
 endin
+
+instr 11 ;VIBES
+  ; kamp = 20000
+  ; kfreq = 440
+  ; ihrd = 0.5
+  ; ipos = p4
+  ; imp = 1
+  ; kvibf = 6.0
+  ; kvamp = 0.05
+  ; ivibfn = 2
+  ; idec = 0.1
+  kenv adsr 0.01,0.1,0.8,0.2
+    asig	vibes	0.5*kenv, 440, .6, p4 , 3, 1, 0.3, -1, .1
+	outs		asig, asig
+endin
+
+instr 12
+
+    kfreq = cpspch(p5)
+    kc1 = p4
+    kc2 = 1
+    kvdepth = 0.05
+    kvrate = 6
+    ifn1 = -1
+    ifn2 = -1
+    ifn3 = -1
+    ifn4 = 2
+    ivfn = -1
+
+    kenv linseg 0, 0.001, 1, p3-.002, 1, 0.001, 0
+    asig fmwurlie .5*kenv, kfreq, kc1, kc2, kvdepth, kvrate, ifn1, ifn2, ifn3, ifn4, ivfn
+    outs asig, asig
+
+endin
+
+
+instr 13
+
+kpres = p4							;pressure value
+krat = p5							;position along string
+kvibf = 6.12723
+kfreq cpspch p6
+
+kvib  linseg 0, 0.5, 0, 1, 1, p3-0.5, 1				; amplitude envelope for the vibrato.		
+kvamp = kvib * 0.01
+asig  wgbow .7, kfreq, kpres, krat, kvibf, kvamp, -1
+      outs asig, asig
+
+endin
+
+
+instr 14
+  kamp = 0.7
+  kfreq = p4
+  ktens = p5
+  iatt = p6
+  kvibf = p7
+  ifn = -1
+
+  ; Create an amplitude envelope for the vibrato.
+  kvamp line 0, p3, 0.5
+
+  a1 wgbrass kamp, kfreq, ktens, iatt, kvibf, kvamp, ifn
+  out a1
+endin
+
+instr 15; CLARINET
+
+kfreq = 550
+kstiff = -0.3
+iatt = 0.1
+idetk = 0.1
+kngain init p4		;vary breath
+kvibf = 5.735
+kvamp = 0.1
+
+asig wgclar .9, kfreq, kstiff, iatt, idetk, kngain, kvibf, kvamp, -1
+     outs asig, asig
+      
+endin
+
 </CsInstruments>
 <CsScore>
 f 2 0 256 1 "fwavblnk.aiff" 0 0 0
 f 3 0 256 1 "marmstk1.wav" 0 0 0
+
 ;i1 0 3 0.4 5.00
-;i3 0 3 0.4 6.00
+;i3 0 1 0.6 7.03
+;i3 + 1 0.6 7.05
+;i3 + 1 0.6 7.07
 ;i3 + . . [10.00+0.07]
-;i4 0 3 0.3 6.00 5 5 0.1
+;i4 3 1 0.6 [7.03] .5 .5 0.1
+;i4 + 1 0.6 [7.05] .5 .5 0.1
+;i4 + 1 0.6 [7.07] .5 .5 0.1
 ;i5 0 1 0.2 10.00 10 5
-i6 0 3 10 0.6 6.00
+;i6 0 3 1 0.6 9.00
 ;i7 0 1 0.5 10.00 1
 ;i8 0 1 0.5 5.06 1 99
-;i 9 0 2 20 0 10.00
-;i 10 0 10 0.4 11.00
+;i 9 0 2 20 0 6.00
+;i 10 0 1 0.7 11.00
+;i 11 1 1 0.3
+;i 12 0 .5 6 8.00
+;i 12 + . 20 8.02
+
+
+;i 13 0 1 3 0.127236 6.00
+;i 13 + 1 5 0.127236 6.02
+;i 13 + 1 5 0.23 6.04
+
+;i 14 0 4  440    0.4   0.1  6.137
+;i 14 4 4  440  0.4   0.01 0.137
+;i 14 8 4  880   0.4   0.1  6.137
+
+i 15 0 1 0.2
+i 15 + 1 0.5	
+
 </CsScore>
 </CsoundSynthesizer>
