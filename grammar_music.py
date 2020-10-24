@@ -7,7 +7,7 @@ from datetime import datetime
 # TASKS
 # Rules for melody selection that emphasize smaller steps and the fundamental
 # Allow individual notes to be offset by 0,0.25,0.5,0.75 instead of the whole line
-# Free floating instruments, looping, evolving, superimposed on each other, shifting sounds
+# Free floating instruments, looping, evolving, superimposed on each other, shifting çsounds
 # 3/4 time
 # Save sections and return to them
 # Let sections mutate with new note values
