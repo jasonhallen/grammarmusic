@@ -21,7 +21,7 @@ rules = {
   ],
 
   "score": [
-    "[#set_mode2#][note_offset:#set_note_offset#][#set_theme#][#set_mode1#][#set_drums#][#set_voices#]; MODE1=#mode1# MODE2=#mode2# DRUMS=#drums# VOICES=#voices# NOTE_OFFSET=#note_offset#\nt 0 [tempo:#set_tempo#]#tempo# 540 #tempo# 600 $BO#tempo#/4$BC 601 #tempo#\n#voices_template#\ns\n#end_piece#"
+    "[#set_mode2#][note_offset:#set_note_offset#][#set_theme#][#set_mode1#][#set_drums#][#set_voices#]; MODE1=#mode1# MODE2=#mode2# DRUMS=#drums# VOICES=#voices# NOTE_OFFSET=#note_offset#\n[tempo:#set_tempo#]#tempo_template#\n#voices_template#\ns\n#end_piece#"
   ],
 
   "set_mode1": [
@@ -62,6 +62,10 @@ rules = {
 
   "set_tempo": [
     "370","380","390","400","410","420","430","440","450","460","470","480","490","500"
+  ],
+
+  "tempo_template": [
+    "t 0 $BO#tempo#/4$BC 180 #tempo#","t 0 #tempo# 360 #tempo# 480 $BO#tempo#/4$BC 481 #tempo#","t 0 #tempo# 643 #tempo# 644 $BO#tempo#/4$BC 764 #tempo#","t 0 #tempo# 800 #tempo# 860 $BO#tempo#/4$BC","t 0 #tempo# 540 #tempo# 600 $BO#tempo#/4$BC 601 #tempo#"
   ],
 
   "max_loop_length": [

@@ -21,8 +21,8 @@ instr 100 ; STRING PLUCK
     aSig	wgpluck2  0.58, p5, cpspch(p6), iPlk, irefl	; generate Karplus-Strong plucked string audio
     kcf	expon	cpsoct(rnd(6)+6),p3,50				; filter cutoff frequency envelope
     aSig	clfilt	aSig, kcf, 0, 2					; butterworth lowpass filter
-    chnmix aSig*aEnv*1.5, "mixl"
-	chnmix aSig*aEnv*1.5, "mixr"
+    chnmix aSig*aEnv*2, "mixl"
+	chnmix aSig*aEnv*2, "mixr"
 endin
 
 instr 101 ; ORGAN
