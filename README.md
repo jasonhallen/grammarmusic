@@ -1,5 +1,5 @@
 # Grammar Music
-[SCREENSHOT]
+![Grammar Music code excerpt](grammar_music_code.png)
 
 ## Introduction
 Grammar Music generates short pieces of music with Tracery, Csound, and Python. I created this as a proof of concept that a grammar language like Tracery could be used to generate music.
