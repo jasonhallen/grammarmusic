@@ -719,8 +719,8 @@ f 49 0 0 1 "drums/oberheim/oberheim_tamborine.wav" 0 0 0
 f 50 0 0 1 "drums/oberheim/oberheim_tom1.wav" 0 0 0
 f 51 0 0 1 "drums/oberheim/oberheim_tom2.wav" 0 0 0
 f 52 0 0 1 "drums/oberheim/oberheim_tom3.wav" 0 0 0
-f 53 0 256 1 "fwavblnk.aiff" 0 0 0 ;RHODES
-f 54 0 256 1 "marmstk1.wav" 0 0 0 ;MARIMBA
+f 53 0 256 1 "drums/fwavblnk.aiff" 0 0 0 ;RHODES
+f 54 0 256 1 "drums/marmstk1.wav" 0 0 0 ;MARIMBA
 f 55 0 0 1 "drums/cr78/cr78_Bongo_High.wav" 0 0 0
 f 56 0 0 1 "drums/cr78/cr78_Bongo_Low.wav" 0 0 0
 f 57 0 0 1 "drums/cr78/cr78_Conga_Low.wav" 0 0 0
