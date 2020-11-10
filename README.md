@@ -17,6 +17,10 @@ The code in this repository is meant to show how Tracery and Csound can be used 
 * The Csound orchestra (i.e. the instruments and sound design) has been pre-designed and is outside the scope of the Tracery grammar itself.
 * After playing through the piece, Python saves the Csound orchestra and score as a .csd file so that you can play it again and edit it.
 
+## Key Files
+* grammar_music.py
+* 
+
 ## Examples
 You can find example outputs in the [Examples folder](LINK).
 
